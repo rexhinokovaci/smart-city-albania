@@ -1,7 +1,7 @@
 // Validates curated camera data and content front matter. Exits non-zero on any error.
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { CAMERA_TYPES, CONTENT_KINDS, inAlbania, parseFrontMatter, readJson } from "./lib.mjs";
+import { CAMERA_TYPES, CONTENT_KINDS, ZONES, inAlbania, parseFrontMatter, readJson } from "./lib.mjs";
 
 const errors = [];
 const err = (where, msg) => errors.push(`${where}: ${msg}`);
@@ -23,6 +23,7 @@ async function validateCameras(path) {
     else ids.add(p.id);
     if (!CAMERA_TYPES.includes(p.type)) err(where, `type must be one of ${CAMERA_TYPES.join(", ")}`);
     if (p.direction !== undefined && !(Number.isInteger(p.direction) && p.direction >= 0 && p.direction < 360)) err(where, "direction must be an integer 0-359");
+    if (p.zone !== undefined && !ZONES.includes(p.zone)) err(where, `zone must be one of ${ZONES.join(", ")}`);
     if (typeof p.source !== "string" || !p.source) err(where, "source required (issue URL or document URL)");
     if (typeof p.verified !== "boolean") err(where, "verified must be boolean");
     if (!DATE.test(p.added ?? "")) err(where, "added must be YYYY-MM-DD");

@@ -28,6 +28,19 @@ body:
         - other — Tjetër / nuk e di
     validations:
       required: true
+  - type: dropdown
+    id: zone
+    attributes:
+      label: Ku ndodhet
+      options:
+        - street — Rrugë / kryqëzim
+        - residential — Lagje / zonë banimi
+        - school — Hyrje ose perimetër shkolle (jo brenda)
+        - square — Shesh / park
+        - highway — Autostradë / rrugë nacionale
+        - other — Tjetër
+    validations:
+      required: true
   - type: input
     id: direction
     attributes:
@@ -49,9 +62,9 @@ body:
     attributes:
       label: Konfirmim
       options:
-        - label: Kamera është e dukshme nga një hapësirë publike.
+        - label: Kamera është e dukshme nga një hapësirë publike (jo brenda shkollave apo ndërtesave).
           required: true
         - label: Nuk kam përfshirë fytyra, targa apo të dhëna personale.
           required: true
-        - label: I jap Modex Apps të drejtën e pakufizuar për të përdorur këtë kontribut (shih CONTRIBUTING.md).
+        - label: Pranoj që kontributi publikohet me licencën ODbL (shih LICENSES.md).
           required: true

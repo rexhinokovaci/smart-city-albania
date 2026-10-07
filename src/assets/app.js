@@ -18,6 +18,9 @@ const I18N = {
     "popup.city": "Qyteti", "popup.purpose.traffic": "Monitorim trafiku",
     "popup.unverified": "E paverifikuar", "popup.fix": "Raporto gabim", "popup.osm": "Ndrysho në OSM",
     "popup.official": "Burim zyrtar", "popup.noDirection": "drejtimi i panjohur",
+    "zone.street": "Rrugë / kryqëzim", "zone.residential": "Lagje", "zone.school": "Perimetër shkolle",
+    "zone.square": "Shesh / park", "zone.highway": "Autostradë", "zone.other": "Tjetër",
+    "zone.town": "Zonë publike", "zone.public": "Hapësirë publike", "zone.traffic": "Trafik", "zone.area": "Zonë", "zone.parking": "Parking", "zone.shop": "Dyqan", "zone.building": "Ndërtesë",
     "legend.cone": "Koni = fusha e shikimit · rrethi me vija = drejtimi i panjohur (vlera tipike, jo të matura)",
     "map.light": "Hartë e çelët", "map.dark": "Hartë e errët",
     "nearby.result": (n, km) => `${n} kamera brenda ${km} km nga ti.`,
@@ -43,6 +46,9 @@ const I18N = {
     "popup.city": "City", "popup.purpose.traffic": "Traffic monitoring",
     "popup.unverified": "Unverified", "popup.fix": "Report an error", "popup.osm": "Edit on OSM",
     "popup.official": "Official source", "popup.noDirection": "direction unknown",
+    "zone.street": "Street / junction", "zone.residential": "Neighbourhood", "zone.school": "School perimeter",
+    "zone.square": "Square / park", "zone.highway": "Highway", "zone.other": "Other",
+    "zone.town": "Public area", "zone.public": "Public space", "zone.traffic": "Traffic", "zone.area": "Area", "zone.parking": "Parking", "zone.shop": "Shop", "zone.building": "Building",
     "legend.cone": "Cone = field of view · dashed circle = direction unknown (typical values, not measured)",
     "map.light": "Light map", "map.dark": "Dark map",
     "nearby.result": (n, km) => `${n} cameras within ${km} km of you.`,
@@ -143,7 +149,7 @@ function popupHtml(p) {
       ${row(t("popup.operator"), esc(p.operator))}
       ${row(t("popup.direction"), Number.isInteger(p.direction) ? `${p.direction}° ${compass(p.direction)}` : esc(t("popup.noDirection")))}
       ${row(t("popup.view"), `${v.angle >= 360 ? "360°" : `${v.angle}°`} · ~${v.range} m${v.estimated ? ` <small>(${esc(t("popup.viewEst"))})</small>` : ""}`)}
-      ${row(t("popup.zone"), p.purpose === "traffic" ? esc(t("popup.purpose.traffic")) : esc(p.zone))}
+      ${row(t("popup.zone"), p.purpose === "traffic" ? esc(t("popup.purpose.traffic")) : p.zone ? esc(I18N[lang][`zone.${p.zone}`] ?? p.zone) : "")}
       ${row(t("popup.mount"), esc(p.mount))}
       ${row(t("popup.manufacturer"), esc(p.manufacturer))}
       ${row(t("popup.installed"), esc(p.installed))}

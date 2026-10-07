@@ -49,7 +49,7 @@ ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(
 <main class="page">
 ${body}
 </main>
-<footer class="site-footer">© ${new Date().getFullYear()} Modex Apps · Të gjitha të drejtat e rezervuara · Të dhënat e hartës © OpenStreetMap contributors (ODbL) · <a href="${up}udhezues/privatesia-e-faqes/">Privatësia</a></footer>
+<footer class="site-footer">© ${new Date().getFullYear()} Modex Apps & kontribuuesit · Open source: kodi AGPL-3.0, përmbajtja CC BY-SA 4.0, të dhënat ODbL · Harta © OpenStreetMap contributors · <a href="https://github.com/rexhinokovaci/smart-city-albania">Kontribuo në GitHub</a> · <a href="${up}udhezues/privatesia-e-faqes/">Privatësia</a></footer>
 </body>
 </html>
 `;
@@ -158,7 +158,7 @@ for (const cam of cameras) {
 }
 await write("data/all.geojson", JSON.stringify({
   type: "FeatureCollection",
-  attribution: "Curated © Modex Apps; official data from public bodies as cited; OSM data © OpenStreetMap contributors (ODbL)",
+  attribution: "Curated data ODbL (Smart City Albania contributors); official data from public bodies as cited; OSM data © OpenStreetMap contributors (ODbL)",
   features: cameras.map(({ lat, lon, ...p }) => ({ type: "Feature", geometry: { type: "Point", coordinates: [lon, lat] }, properties: p })),
 }) + "\n");
 const citiesWithCameras = [...byCity.values()].filter((l) => l.length).length;
