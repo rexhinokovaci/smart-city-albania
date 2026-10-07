@@ -39,7 +39,7 @@ content/{news,guides}/*.md ─────────────────�
 
 - **No backend, no database, no secrets.** It is a static site, so it costs nothing and gives attackers very little to hit.
 - **Validation in CI** (`scripts/validate.mjs`): coordinates must fall inside Albania, ids must be unique, types must be valid, and every news post must cite at least one https source.
-- **Daily automation:** the OSM sync and redeploy run as a GitHub Action. New articles arrive as PRs from a scheduled Claude routine and are human-reviewed before merge.
+- **Daily automation:** the OSM sync and redeploy run as a GitHub Action. New articles arrive as PRs from a scheduled Claude routine and merge themselves once CI passes. Only `content/` and `data/cameras.geojson` may change in those PRs.
 
 ```bash
 npm ci
