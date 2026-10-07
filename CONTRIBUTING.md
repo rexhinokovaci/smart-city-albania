@@ -3,7 +3,7 @@
 Ky projekt ndërtohet nga qytetarët. **Çdokush mund të ndihmojë**, edhe pa ditur të programojë.
 
 ## 1. Raporto një kamerë (5 minuta, pa kod)
-Plotëso [formularin e kamerës së re](https://github.com/rexhinokovaci/smart-city-albania/issues/new?template=new-camera.yml). Pasi një mirëmbajtës e miraton, kamera shfaqet automatikisht në hartë.
+Plotëso [formularin e kamerës së re](https://github.com/rexhinokovaci/smart-city-albania/issues/new?template=new-camera.yml). Brenda 24 orësh kamera shfaqet në hartë si **e paverifikuar**. Kur një mirëmbajtës e konfirmon, bëhet **e verifikuar**. Raportimet nga llogari GitHub më të reja se 7 ditë shqyrtohen me dorë.
 
 Ose shtoje direkt në **OpenStreetMap** (`man_made=surveillance`, `surveillance:type=camera|ALPR`, `camera:direction=<gradë>`). Harta jonë i tërheq të dhënat e OSM çdo ditë.
 
