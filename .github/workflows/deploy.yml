@@ -29,14 +29,17 @@ jobs:
         id: osm
         continue-on-error: true # never block a deploy on an Overpass outage
         run: npm run sync:osm
+      - name: Pull cameras from official public sources
+        continue-on-error: true
+        run: npm run sync:official
       - name: Commit if changed
-        if: steps.osm.outcome == 'success'
         run: |
-          if git diff --quiet -- data/osm.geojson; then echo "No OSM changes"; exit 0; fi
+          if git diff --quiet -- data/osm.geojson data/official.geojson; then echo "No data changes"; exit 0; fi
+          npm run validate
           git config user.name "smart-city-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/osm.geojson
-          git commit -m "data: daily OpenStreetMap sync"
+          git add data/osm.geojson data/official.geojson
+          git commit -m "data: daily sync (OpenStreetMap + official sources)"
           git push
 
   deploy:
@@ -63,3 +66,12 @@ jobs:
         with: { path: dist }
       - id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+      - name: Notify search engines (IndexNow → Bing, Yandex, Seznam, Naver)
+        continue-on-error: true
+        env:
+          SITE: https://rexhinokovaci.github.io/smart-city-albania
+          KEY: fd506901871ce8ad313045e4aae8915c
+        run: |
+          urls=$(grep -o '<loc>[^<]*</loc>' dist/sitemap.xml | sed 's/<[^>]*>//g' | jq -R . | jq -sc .)
+          body=$(jq -nc --arg key "$KEY" --arg loc "$SITE/$KEY.txt" --argjson urls "$urls" '{host:"rexhinokovaci.github.io", key:$key, keyLocation:$loc, urlList:$urls}')
+          curl -sS -o /dev/null -w "IndexNow HTTP %{http_code}\n" -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' -d "$body"

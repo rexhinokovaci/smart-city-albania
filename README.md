@@ -16,7 +16,8 @@
 Projekti qeveritar **Smart City** po instalon mijëra kamera inteligjente në qytetet e Shqipërisë. Sipas raportimeve, ato përfshijnë mbi 2,000 lexues automatikë targash (ANPR) dhe mbi 2,500 kamera PTZ. Nuk ekziston ende asnjë regjistër publik i vendndodhjeve të tyre. Ky projekt e plotëson këtë boshllëk në mënyrë të hapur, të verifikueshme dhe në përputhje me standardet europiane të transparencës.
 
 **Çfarë ofron:**
-- 🗺️ **Hartë interaktive** me filtra sipas llojit (ALPR, CCTV, PTZ, shpejtësi) dhe me drejtimin e kamerës.
+- 🗺️ **Hartë interaktive** në stilin e DeFlock: konet e fushës së shikimit, rrezja e mbulimit dhe filtra sipas llojit dhe burimit.
+- 🏛️ **Të dhëna zyrtare**: kamerat e trafikut të Bashkisë Tiranë, të importuara çdo ditë nga tirana.al.
 - 📍 **"Kamerat pranë meje"**: vendndodhja jote llogaritet vetëm në pajisjen tënde.
 - 🏙️ **Faqe për çdo qytet**: Tiranë, Durrës, Vlorë, Shkodër dhe të tjera.
 - 📰 **Lajme me burime**: çdo artikull ka referenca të verifikueshme.
@@ -32,7 +33,8 @@ A DeFlock-style public map of surveillance cameras in Albania, focused on the na
 ## How it works
 
 ```
-OpenStreetMap ──(daily GitHub Action)──▶ data/osm.geojson ─┐
+OpenStreetMap ──(daily GitHub Action)──▶ data/osm.geojson ──────┐
+Official pages (tirana.al …) ──(daily)──▶ data/official.geojson ─┤
 GitHub issue form ──(maintainer "approved" label)──▶ data/cameras.geojson ─┼─▶ scripts/build.mjs ─▶ GitHub Pages
 content/{news,guides}/*.md ────────────────────────────────┘     (map, city pages, sitemap, RSS, llms.txt)
 ```
@@ -52,6 +54,7 @@ npm run serve      # validate + build + serve dist/ locally
 | `src/` | Map app (Leaflet, vanilla JS, no framework) |
 | `data/cameras.geojson` | Curated, verified cameras (© Modex Apps) |
 | `data/osm.geojson` | OpenStreetMap snapshot (ODbL) |
+| `data/official.geojson` | Cameras published by public bodies (adapters in `scripts/sync-official.mjs`) |
 | `content/news/` | News posts, `sources:` required |
 | `content/guides/` | Evergreen rights and how-to guides |
 | `scripts/` | Build, validation, OSM sync, issue→camera |

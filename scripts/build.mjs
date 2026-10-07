@@ -4,7 +4,7 @@ import { dirname, join } from "node:path";
 import { marked } from "marked";
 
 marked.use({ renderer: { html: (token) => esc(typeof token === "string" ? token : token.text) } });
-import { CONTENT_KINDS, cityFor, escapeHtml as esc, parseFrontMatter, readJson } from "./lib.mjs";
+import { CONTENT_KINDS, cityFor, distanceKm, escapeHtml as esc, parseFrontMatter, readJson } from "./lib.mjs";
 
 const SITE_URL = (process.env.SITE_URL ?? "https://rexhinokovaci.github.io/smart-city-albania").replace(/\/$/, "");
 const OUT = "dist";
@@ -100,12 +100,15 @@ function renderCity(city, cams) {
   const path = `qytete/${city.slug}/`;
   const counts = Object.fromEntries(Object.keys(TYPE_LABELS).map((k) => [k, cams.filter((c) => c.type === k).length]));
   const title = `Kamerat e mbikëqyrjes në ${city.name}`;
+  const named = cams.filter((c) => c.origin === "official" && c.name);
   const description = `${cams.length} kamera të regjistruara në ${city.name}, përfshirë ${counts.alpr} lexues targash. Shiko hartën dhe njih të drejtat e tua.`;
   const rows = Object.entries(counts).filter(([, n]) => n).map(([k, n]) => `<tr><td>${TYPE_LABELS[k]}</td><td>${n}</td></tr>`).join("");
   const body = `<h1>${esc(title)}</h1>
 <p class="meta">Përditësuar ${today}</p>
-<p>Në hartën tonë publike janë regjistruar <strong>${cams.length}</strong> kamera mbikëqyrjeje brenda rreth ${city.radiusKm} km nga qendra e ${esc(city.name)}. Të dhënat vijnë nga raportime të verifikuara dhe nga OpenStreetMap.</p>
+<p>Në hartën tonë publike janë regjistruar <strong>${cams.length}</strong> kamera mbikëqyrjeje brenda rreth ${city.radiusKm} km nga qendra e ${esc(city.name)}. Të dhënat vijnë nga burime zyrtare publike, raportime të verifikuara dhe OpenStreetMap.</p>
 ${rows ? `<table><thead><tr><th>Lloji</th><th>Numri</th></tr></thead><tbody>${rows}</tbody></table>` : "<p>Ende nuk ka kamera të regjistruara këtu. Ndihmo duke raportuar një.</p>"}
+${city.smartCity ? `<p><strong>${esc(city.name)} është një nga 20 qytetet e programit qeveritar Smart City</strong>, ku po instalohen kamera inteligjente që lexojnë edhe targat (<a href="https://euronews.al/cilat-jane-20-qytetet-e-shqiperise-qe-do-monitorohen-nga-kamerat/" rel="noopener nofollow" target="_blank">Euronews Albania, 2024</a>). Vendndodhjet e tyre nuk janë publikuar zyrtarisht.</p>` : ""}
+${named.length ? `<h2>Kamerat zyrtare të publikuara</h2><ul>${named.map((c) => `<li>${esc(c.name)}${c.operator ? ` · ${esc(c.operator)}` : ""}</li>`).join("")}</ul>` : ""}
 <h2>Çfarë duhet të dish</h2>
 <p>Kamerat në hapësira publike përpunojnë të dhëna personale. Ke të drejtë të dish kush i operon, për çfarë qëllimi dhe sa kohë ruhen pamjet, si dhe të kërkosh pamjet ku shfaqesh ti. <a href="../../udhezues/si-te-kerkosh-pamjet-e-kameres/">Lexo si t'i kërkosh</a>.</p>
 <a class="btn btn-primary cta" href="../../#14/${city.lat}/${city.lon}">Hap hartën e ${esc(city.name)} →</a>`;
@@ -128,18 +131,38 @@ await cp("src", OUT, { recursive: true });
 await cp("data", join(OUT, "data"), { recursive: true });
 
 const curated = await readJson("data/cameras.geojson");
+const official = await readJson("data/official.geojson");
 const osm = await readJson("data/osm.geojson");
 const cities = await readJson("data/cities.json");
+
+// Merge sources by priority (curated > official > OSM). A lower-priority camera within
+// DEDUPE_M metres of an already-kept one is treated as the same device.
+const DEDUPE_M = 15;
+const SOURCES = [["community", curated], ["official", official], ["osm", osm]];
+const cameras = [];
 const ids = new Set();
-const cameras = [...curated.features, ...osm.features].filter((f) => !ids.has(f.properties.id) && ids.add(f.properties.id))
-  .map((f) => ({ ...f.properties, lat: f.geometry.coordinates[1], lon: f.geometry.coordinates[0] }));
+for (const [origin, fc] of SOURCES) {
+  for (const f of fc.features) {
+    const [lon, lat] = f.geometry.coordinates;
+    if (ids.has(f.properties.id)) continue;
+    if (origin !== "community" && cameras.some((c) => c.origin !== origin && distanceKm(lat, lon, c.lat, c.lon) * 1000 < DEDUPE_M)) continue;
+    ids.add(f.properties.id);
+    cameras.push({ ...f.properties, origin, lat, lon });
+  }
+}
 const byCity = new Map(cities.map((c) => [c.slug, []]));
 for (const cam of cameras) {
   const c = cityFor(cam.lat, cam.lon, cities);
+  cam.city = c?.name;
   if (c) byCity.get(c.slug).push(cam);
 }
+await write("data/all.geojson", JSON.stringify({
+  type: "FeatureCollection",
+  attribution: "Curated © Modex Apps; official data from public bodies as cited; OSM data © OpenStreetMap contributors (ODbL)",
+  features: cameras.map(({ lat, lon, ...p }) => ({ type: "Feature", geometry: { type: "Point", coordinates: [lon, lat] }, properties: p })),
+}) + "\n");
 const citiesWithCameras = [...byCity.values()].filter((l) => l.length).length;
-await write("data/meta.json", JSON.stringify({ updated: today, total: cameras.length, citiesWithCameras, osmGenerated: osm.generated }) + "\n");
+await write("data/meta.json", JSON.stringify({ updated: today, total: cameras.length, official: cameras.filter((c) => c.origin === "official").length, citiesWithCameras, smartCityCities: cities.filter((c) => c.smartCity).length, osmGenerated: osm.generated, officialGenerated: official.generated }) + "\n");
 
 const indexHtml = (await readFile("src/index.html", "utf8")).replaceAll("{{SITE_URL}}", SITE_URL);
 await write("index.html", indexHtml);

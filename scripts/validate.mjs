@@ -59,7 +59,7 @@ async function validateContent() {
 }
 
 await validateCameras("data/cameras.geojson");
-await readJson("data/osm.geojson").catch((e) => err("data/osm.geojson", e.message));
+for (const f of ["data/osm.geojson", "data/official.geojson"]) await readJson(f).catch((e) => err(f, e.message));
 await validateContent();
 
 if (errors.length) {
