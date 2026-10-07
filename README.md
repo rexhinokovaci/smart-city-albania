@@ -52,7 +52,7 @@ npm run serve      # validate + build + serve dist/ locally
 | Path | Purpose |
 |---|---|
 | `src/` | Map app (Leaflet, vanilla JS, no framework) |
-| `data/cameras.geojson` | Curated, verified cameras (© Modex Apps) |
+| `data/cameras.geojson` | Curated, verified cameras (ODbL) |
 | `data/osm.geojson` | OpenStreetMap snapshot (ODbL) |
 | `data/official.geojson` | Cameras published by public bodies (adapters in `scripts/sync-official.mjs`) |
 | `content/news/` | News posts, `sources:` required |
@@ -66,8 +66,17 @@ npm run serve      # validate + build + serve dist/ locally
 3. **Facts, not accusations.** Claims link to sources. Legal conclusions are left to the Commissioner (IDP) and the courts.
 4. **Fast corrections.** [Report an error](https://github.com/rexhinokovaci/smart-city-albania/issues/new?template=correction.yml).
 
+## Contribute
+
+Ky është një projekt **open source** dhe ka nevojë për ty:
+- 📷 [Raporto një kamerë](https://github.com/rexhinokovaci/smart-city-albania/issues/new?template=new-camera.yml) në lagjen tënde, në rrugë ose pranë shkollave (vetëm nga hapësira publike).
+- 🧑‍💻 Merr një [`good first issue`](https://github.com/rexhinokovaci/smart-city-albania/labels/good%20first%20issue).
+- 💬 Bashkohu te [Discussions](https://github.com/rexhinokovaci/smart-city-albania/discussions).
+
+Lexo [CONTRIBUTING.md](CONTRIBUTING.md) dhe [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## License
 
-**All rights reserved.** This repository is public for transparency only. You may not copy, host, redistribute or build derivative works of it without written permission. See [LICENSE](LICENSE). OpenStreetMap data stays under the ODbL.
+Open source. Code: **AGPL-3.0**. Content: **CC BY-SA 4.0**. Data: **ODbL**. Improvements must stay open. See [LICENSES.md](LICENSES.md).
 
 Built by **[Modex Apps](https://modex.al)**. Institutions interested in collaboration: [open an issue](https://github.com/rexhinokovaci/smart-city-albania/issues).

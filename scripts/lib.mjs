@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 export const ALBANIA_BBOX = { minLat: 39.6, maxLat: 42.7, minLon: 19.2, maxLon: 21.1 };
 
 export const CAMERA_TYPES = ["alpr", "cctv", "dome", "speed", "other"];
+export const ZONES = ["street", "residential", "school", "square", "highway", "other"];
 
 export const CONTENT_KINDS = {
   news: { dir: "content/news", route: "lajme", requireSources: true },

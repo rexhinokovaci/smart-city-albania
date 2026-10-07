@@ -5,7 +5,7 @@ date: 2026-10-07
 lang: sq
 ---
 
-**Smart City Albania** (ky projekt) është një hartë publike dhe e pavarur e kamerave të mbikëqyrjes në Shqipëri. E ndërton dhe e mirëmban **Modex Apps**.
+**Smart City Albania** (ky projekt) është një hartë publike dhe e pavarur e kamerave të mbikëqyrjes në Shqipëri. Është **open source**: e nisi **Modex Apps** dhe e ndërtojnë qytetarët. [Kontribuo në GitHub](https://github.com/rexhinokovaci/smart-city-albania/blob/main/CONTRIBUTING.md).
 
 ## Pse
 

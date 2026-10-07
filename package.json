@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Public transparency map of surveillance cameras in Albania",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "AGPL-3.0-only",
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {

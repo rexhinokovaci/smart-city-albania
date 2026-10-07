@@ -1,7 +1,7 @@
 // Converts an approved "new camera" issue into a curated GeoJSON feature.
 // Input is untrusted: it is read from the event payload file, never interpolated into a shell.
 import { readFile, writeFile } from "node:fs/promises";
-import { CAMERA_TYPES, inAlbania, readJson } from "./lib.mjs";
+import { CAMERA_TYPES, ZONES, inAlbania, readJson } from "./lib.mjs";
 
 const event = JSON.parse(await readFile(process.env.GITHUB_EVENT_PATH, "utf8"));
 const issue = event.issue;
@@ -22,6 +22,9 @@ if (!inAlbania(lat, lon)) throw new Error(`Koordinatat ${lat}, ${lon} janë jash
 const type = field("Lloji")?.split(/\s/)[0];
 if (!CAMERA_TYPES.includes(type)) throw new Error(`Lloj i panjohur: ${type}`);
 
+const zone = field("Ku ndodhet")?.split(/\s/)[0];
+if (zone !== undefined && !ZONES.includes(zone)) throw new Error(`Zonë e panjohur: ${zone}`);
+
 const dirRaw = field("Drejtimi");
 const direction = dirRaw === undefined ? undefined : Number.parseInt(dirRaw, 10);
 if (direction !== undefined && !(direction >= 0 && direction < 360)) throw new Error("Drejtimi duhet të jetë 0-359.");
@@ -39,6 +42,7 @@ fc.features.push({
     id, type,
     ...(direction !== undefined && { direction }),
     ...(operator && { operator }),
+    ...(zone && { zone }),
     source: issue.html_url,
     verified: true,
     added: new Date().toISOString().slice(0, 10),
