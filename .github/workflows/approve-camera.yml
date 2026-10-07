@@ -1,0 +1,51 @@
+name: Add approved camera
+
+# A maintainer adds the "approved" label to a "new-camera" issue → the camera is added to the map.
+# Only users with triage access or higher can apply labels, so the label is the approval gate.
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: curated-data
+  cancel-in-progress: false
+
+jobs:
+  add:
+    if: github.event.label.name == 'approved' && contains(github.event.issue.labels.*.name, 'new-camera')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - name: Convert issue to camera
+        id: convert
+        run: node scripts/issue-to-camera.mjs 2>&1 | tee result.txt
+      - run: npm run validate
+      - name: Commit and redeploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: |
+          git config user.name "smart-city-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/cameras.geojson
+          git commit -m "data: add camera from #${ISSUE}"
+          git push
+          gh workflow run deploy.yml --ref main
+          gh issue comment "$ISSUE" --body "✅ Kamera u shtua në hartë. Faleminderit! / Added to the map, thank you."
+          gh issue close "$ISSUE" --reason completed
+          gh issue edit "$ISSUE" --remove-label needs-review
+      - name: Report failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: gh issue comment "$ISSUE" --body "⚠️ Nuk u shtua automatikisht. Kontrolloni formatin e koordinatave dhe fushat. Shih logun e workflow-t."

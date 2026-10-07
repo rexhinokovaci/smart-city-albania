@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Harta e Kamerave — Smart City Albania</title>
+  <meta name="description" content="Harta publike e kamerave të mbikëqyrjes dhe lexuesve të targave (ALPR) në Shqipëri. Shiko ku janë kamerat, njih të drejtat e tua dhe raporto kamera të reja.">
+  <link rel="canonical" href="{{SITE_URL}}/">
+  <meta name="theme-color" content="#0b0d10">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Harta e Kamerave — Smart City Albania">
+  <meta property="og:description" content="Ku janë kamerat e mbikëqyrjes në Shqipëri? Hartë publike, e hapur për këdo.">
+  <meta property="og:url" content="{{SITE_URL}}/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/rss+xml" title="Lajme — Smart City Albania" href="{{SITE_URL}}/feed.xml">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="">
+  <link rel="stylesheet" href="assets/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Dataset","name":"Smart City Albania — Harta e Kamerave","description":"Vendndodhjet publike të kamerave të mbikëqyrjes dhe lexuesve të targave në Shqipëri.","url":"{{SITE_URL}}/","spatialCoverage":{"@type":"Place","name":"Shqipëri"},"creator":{"@type":"Organization","name":"Modex Apps"}}
+  </script>
+</head>
+<body class="app">
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Smart City Albania">
+      <img src="assets/icon.svg" alt="" width="28" height="28">
+      <span>Smart City <b>Albania</b></span>
+    </a>
+    <nav class="topnav">
+      <a href="lajme/" data-i18n="nav.news">Lajme</a>
+      <a href="udhezues/" data-i18n="nav.guides">Të drejtat</a>
+      <a href="qytete/" data-i18n="nav.cities">Qytetet</a>
+      <button id="lang" class="chip" type="button" aria-label="Change language">EN</button>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <aside class="panel" id="panel" aria-label="Filtrat">
+      <button class="sheet-handle" id="sheetToggle" type="button" aria-label="Hap/mbyll panelin"></button>
+      <section class="stats" aria-live="polite">
+        <div><strong id="statTotal">–</strong><span data-i18n="stats.total">kamera në hartë</span></div>
+        <div><strong id="statAlpr">–</strong><span data-i18n="stats.alpr">lexues targash</span></div>
+        <div><strong id="statCities">–</strong><span data-i18n="stats.cities">qytete</span></div>
+      </section>
+
+      <label class="search">
+        <span class="sr-only" data-i18n="search.label">Kërko qytetin</span>
+        <input id="search" type="search" list="cityList" placeholder="Kërko qytetin…" data-i18n-placeholder="search.placeholder" autocomplete="off">
+        <datalist id="cityList"></datalist>
+      </label>
+
+      <button id="locate" class="btn btn-primary" type="button" data-i18n="locate">📍 Kamerat pranë meje</button>
+      <p id="nearby" class="nearby" hidden></p>
+
+      <fieldset class="filters">
+        <legend data-i18n="filters.title">Lloji</legend>
+        <label><input type="checkbox" value="alpr" checked><i class="dot alpr"></i><span data-i18n="type.alpr">Lexues targash (ALPR)</span></label>
+        <label><input type="checkbox" value="cctv" checked><i class="dot cctv"></i><span data-i18n="type.cctv">Kamera CCTV</span></label>
+        <label><input type="checkbox" value="dome" checked><i class="dot dome"></i><span data-i18n="type.dome">Kamera kupolë (PTZ)</span></label>
+        <label><input type="checkbox" value="speed" checked><i class="dot speed"></i><span data-i18n="type.speed">Kamera shpejtësie</span></label>
+        <label><input type="checkbox" value="other" checked><i class="dot other"></i><span data-i18n="type.other">Tjetër</span></label>
+      </fieldset>
+
+      <a class="btn" id="report" href="https://github.com/rexhinokovaci/smart-city-albania/issues/new?template=new-camera.yml" target="_blank" rel="noopener" data-i18n="report">＋ Raporto një kamerë</a>
+      <p class="fineprint" data-i18n="privacy">Kjo faqe nuk përdor cookies dhe nuk gjurmon vizitorët. Vendndodhja jote përpunohet vetëm në pajisjen tënde.</p>
+      <p class="fineprint"><span data-i18n="updated">Përditësuar:</span> <time id="updated">–</time></p>
+    </aside>
+    <div id="map" role="application" aria-label="Harta e kamerave"></div>
+  </main>
+
+  <noscript><p class="noscript">Harta kërkon JavaScript. <a href="lajme/">Lexo lajmet</a> · <a href="qytete/">Qytetet</a></p></noscript>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
+  <script src="assets/app.js" type="module"></script>
+</body>
+</html>

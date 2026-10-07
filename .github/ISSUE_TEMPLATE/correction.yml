@@ -1,0 +1,28 @@
+name: "✏️ Korrigjim / Correction"
+description: Një kamerë mungon, është zhvendosur ose është gabim.
+title: "Korrigjim: "
+labels: ["correction", "needs-review"]
+body:
+  - type: input
+    id: camera_id
+    attributes:
+      label: ID e kamerës
+      description: Shfaqet në titullin e këtij raportimi nëse e hape nga harta.
+  - type: dropdown
+    id: issue
+    attributes:
+      label: Problemi
+      options:
+        - Kamera nuk ekziston më
+        - Vendndodhja është gabim
+        - Lloji ose drejtimi është gabim
+        - Kërkesë për heqje (arsye ligjore / sigurie)
+        - Tjetër
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Detaje
+    validations:
+      required: true
