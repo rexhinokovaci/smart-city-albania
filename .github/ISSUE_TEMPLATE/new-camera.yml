@@ -1,0 +1,57 @@
+name: "📷 Kamerë e re / New camera"
+description: Raporto një kamerë mbikëqyrjeje në një hapësirë publike.
+title: "Kamerë e re: "
+labels: ["new-camera", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Ky raportim është publik.** Mos shkruaj emrin tënd dhe mos ngarko foto me fytyra ose targa të lexueshme.
+        Merr koordinatat: në Google Maps ose OpenStreetMap shtyp gjatë mbi pikën dhe kopjo numrat (p.sh. `41.32750, 19.81870`).
+  - type: input
+    id: coordinates
+    attributes:
+      label: Koordinatat
+      description: "Gjerësia, gjatësia (lat, lon)"
+      placeholder: "41.32750, 19.81870"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Lloji
+      options:
+        - alpr — Lexues targash
+        - cctv — Kamera fikse
+        - dome — Kamera kupolë / PTZ
+        - speed — Kamerë shpejtësie
+        - other — Tjetër / nuk e di
+    validations:
+      required: true
+  - type: input
+    id: direction
+    attributes:
+      label: Drejtimi (gradë, opsionale)
+      description: "0 = veri, 90 = lindje, 180 = jug, 270 = perëndim"
+      placeholder: "180"
+  - type: input
+    id: operator
+    attributes:
+      label: Operatori (opsionale)
+      placeholder: "Policia e Shtetit / Bashkia / privat"
+  - type: textarea
+    id: notes
+    attributes:
+      label: Shënime
+      description: Si e dallove? A ka tabelë informuese? Foto e kamerës (pa njerëz/targa) ndihmon verifikimin.
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Konfirmim
+      options:
+        - label: Kamera është e dukshme nga një hapësirë publike.
+          required: true
+        - label: Nuk kam përfshirë fytyra, targa apo të dhëna personale.
+          required: true
+        - label: I jap Modex Apps të drejtën e pakufizuar për të përdorur këtë kontribut (shih CONTRIBUTING.md).
+          required: true

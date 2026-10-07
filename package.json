@@ -1,0 +1,18 @@
+{
+  "name": "smart-city-albania",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Public transparency map of surveillance cameras in Albania",
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "sync:osm": "node scripts/sync-osm.mjs",
+    "build": "node scripts/validate.mjs && node scripts/build.mjs",
+    "serve": "npm run build && npx --yes serve@14.2.3 dist"
+  },
+  "dependencies": {
+    "marked": "12.0.2"
+  }
+}

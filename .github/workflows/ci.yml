@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run build
+
+  # Daily content PRs from the Claude routine merge themselves once the build passes.
+  # Gates: same-repo branch named claude/daily-*, and only content/ or curated data changed.
+  automerge:
+    needs: build
+    if: startsWith(github.head_ref, 'claude/daily-') && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PR: ${{ github.event.pull_request.number }}
+    steps:
+      - name: Only content and curated data may change
+        run: |
+          files=$(gh pr diff "$PR" --name-only -R "$GITHUB_REPOSITORY")
+          echo "$files"
+          bad=$(echo "$files" | grep -vE '^(content/(news|guides)/[a-z0-9-]+\.md|data/cameras\.geojson)$' || true)
+          if [ -n "$bad" ]; then echo "::error::Auto-merge blocked, files outside allowed paths: $bad"; exit 1; fi
+      - name: Merge and deploy
+        run: |
+          gh pr merge "$PR" --squash --delete-branch -R "$GITHUB_REPOSITORY"
+          gh workflow run deploy.yml --ref main -R "$GITHUB_REPOSITORY"

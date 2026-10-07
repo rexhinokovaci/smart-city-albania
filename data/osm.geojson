@@ -1,0 +1,1043 @@
+{
+ "type": "FeatureCollection",
+ "generated": "2026-10-07T20:13:05.318Z",
+ "attribution": "© OpenStreetMap contributors, ODbL",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4735638,
+     41.3140232
+    ]
+   },
+   "properties": {
+    "id": "osm-12172821032",
+    "type": "cctv",
+    "direction": 326,
+    "zone": "area",
+    "source": "https://www.openstreetmap.org/node/12172821032",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4733114,
+     41.3141023
+    ]
+   },
+   "properties": {
+    "id": "osm-12172970815",
+    "type": "cctv",
+    "direction": 55,
+    "zone": "area",
+    "source": "https://www.openstreetmap.org/node/12172970815",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4737767,
+     41.3142203
+    ]
+   },
+   "properties": {
+    "id": "osm-12174648528",
+    "type": "cctv",
+    "direction": 312,
+    "zone": "traffic",
+    "source": "https://www.openstreetmap.org/node/12174648528",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4736059,
+     41.314283
+    ]
+   },
+   "properties": {
+    "id": "osm-12174648529",
+    "type": "cctv",
+    "direction": 96,
+    "zone": "traffic",
+    "source": "https://www.openstreetmap.org/node/12174648529",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4734,
+     41.3143588
+    ]
+   },
+   "properties": {
+    "id": "osm-12174648530",
+    "type": "cctv",
+    "direction": 95,
+    "zone": "traffic",
+    "source": "https://www.openstreetmap.org/node/12174648530",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4735974,
+     41.3142271
+    ]
+   },
+   "properties": {
+    "id": "osm-12175395229",
+    "type": "dome",
+    "direction": 25,
+    "zone": "corridor",
+    "source": "https://www.openstreetmap.org/node/12175395229",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4737855,
+     41.3142053
+    ]
+   },
+   "properties": {
+    "id": "osm-12175404922",
+    "type": "cctv",
+    "direction": 188,
+    "zone": "area",
+    "source": "https://www.openstreetmap.org/node/12175404922",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4736478,
+     41.3139941
+    ]
+   },
+   "properties": {
+    "id": "osm-12175404923",
+    "type": "cctv",
+    "direction": 45,
+    "zone": "area",
+    "source": "https://www.openstreetmap.org/node/12175404923",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4736349,
+     41.3139892
+    ]
+   },
+   "properties": {
+    "id": "osm-12176430916",
+    "type": "cctv",
+    "direction": 252,
+    "zone": "area",
+    "source": "https://www.openstreetmap.org/node/12176430916",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4732987,
+     41.3140948
+    ]
+   },
+   "properties": {
+    "id": "osm-12177031649",
+    "type": "cctv",
+    "direction": 268,
+    "zone": "area",
+    "source": "https://www.openstreetmap.org/node/12177031649",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4732238,
+     41.3141219
+    ]
+   },
+   "properties": {
+    "id": "osm-12177031650",
+    "type": "cctv",
+    "direction": 157,
+    "zone": "area",
+    "source": "https://www.openstreetmap.org/node/12177031650",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.473402,
+     41.3142439
+    ]
+   },
+   "properties": {
+    "id": "osm-12183592725",
+    "type": "cctv",
+    "direction": 135,
+    "zone": "area",
+    "source": "https://www.openstreetmap.org/node/12183592725",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.473644,
+     41.3141559
+    ]
+   },
+   "properties": {
+    "id": "osm-12183592726",
+    "type": "cctv",
+    "direction": 280,
+    "zone": "area",
+    "source": "https://www.openstreetmap.org/node/12183592726",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.7734053,
+     42.3958827
+    ]
+   },
+   "properties": {
+    "id": "osm-13112762730",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13112762730",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.5742323,
+     42.1141257
+    ]
+   },
+   "properties": {
+    "id": "osm-13116619377",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13116619377",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4925488,
+     42.0457899
+    ]
+   },
+   "properties": {
+    "id": "osm-13119055088",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13119055088",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4963089,
+     42.0475841
+    ]
+   },
+   "properties": {
+    "id": "osm-13123045396",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13123045396",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.4168722,
+     42.0767314
+    ]
+   },
+   "properties": {
+    "id": "osm-13123509972",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13123509972",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.4162464,
+     42.0772863
+    ]
+   },
+   "properties": {
+    "id": "osm-13123535028",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13123535028",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.4165523,
+     42.0772944
+    ]
+   },
+   "properties": {
+    "id": "osm-13123537064",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13123537064",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.4165522,
+     42.0772946
+    ]
+   },
+   "properties": {
+    "id": "osm-13123545016",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13123545016",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8946638,
+     41.6828189
+    ]
+   },
+   "properties": {
+    "id": "osm-13131062584",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13131062584",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8944706,
+     41.6828497
+    ]
+   },
+   "properties": {
+    "id": "osm-13131076517",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13131076517",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8948023,
+     41.6822919
+    ]
+   },
+   "properties": {
+    "id": "osm-13131435322",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13131435322",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8022466,
+     41.327506
+    ]
+   },
+   "properties": {
+    "id": "osm-13136646472",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13136646472",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8023052,
+     41.3275279
+    ]
+   },
+   "properties": {
+    "id": "osm-13136662198",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13136662198",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8020613,
+     41.3274507
+    ]
+   },
+   "properties": {
+    "id": "osm-13136668415",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13136668415",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8210808,
+     41.3213582
+    ]
+   },
+   "properties": {
+    "id": "osm-13137915477",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13137915477",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8213315,
+     41.3213903
+    ]
+   },
+   "properties": {
+    "id": "osm-13137915554",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13137915554",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8210116,
+     41.3215865
+    ]
+   },
+   "properties": {
+    "id": "osm-13137920518",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13137920518",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8215697,
+     41.321432
+    ]
+   },
+   "properties": {
+    "id": "osm-13137924816",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13137924816",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8210463,
+     41.3214707
+    ]
+   },
+   "properties": {
+    "id": "osm-13137937166",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13137937166",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8205666,
+     41.3220188
+    ]
+   },
+   "properties": {
+    "id": "osm-13137939341",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13137939341",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8206886,
+     41.3215604
+    ]
+   },
+   "properties": {
+    "id": "osm-13137940889",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13137940889",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8219272,
+     41.314204
+    ]
+   },
+   "properties": {
+    "id": "osm-13137994632",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13137994632",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8219938,
+     41.3141186
+    ]
+   },
+   "properties": {
+    "id": "osm-13138003590",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13138003590",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8218793,
+     41.3142491
+    ]
+   },
+   "properties": {
+    "id": "osm-13138016314",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13138016314",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8216252,
+     41.3146791
+    ]
+   },
+   "properties": {
+    "id": "osm-13138017482",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13138017482",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8226744,
+     41.3255138
+    ]
+   },
+   "properties": {
+    "id": "osm-13138226827",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13138226827",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8167685,
+     41.3132803
+    ]
+   },
+   "properties": {
+    "id": "osm-13138253564",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/13138253564",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8560787,
+     41.2848217
+    ]
+   },
+   "properties": {
+    "id": "osm-14088028031",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14088028031",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8563491,
+     41.3726621
+    ]
+   },
+   "properties": {
+    "id": "osm-14099086036",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14099086036",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.819621,
+     41.3157169
+    ]
+   },
+   "properties": {
+    "id": "osm-14142496235",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/14142496235",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8197648,
+     41.3157637
+    ]
+   },
+   "properties": {
+    "id": "osm-14142512125",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/14142512125",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8196264,
+     41.3157268
+    ]
+   },
+   "properties": {
+    "id": "osm-14142527346",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/14142527346",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.6970472,
+     41.3733691
+    ]
+   },
+   "properties": {
+    "id": "osm-14167680141",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14167680141",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.7030705,
+     41.4242319
+    ]
+   },
+   "properties": {
+    "id": "osm-14167680153",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14167680153",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.6749002,
+     41.5720785
+    ]
+   },
+   "properties": {
+    "id": "osm-2366969574",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/2366969574",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.0266926,
+     41.1133548
+    ]
+   },
+   "properties": {
+    "id": "osm-2403700705",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/2403700705",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.0268252,
+     41.1133889
+    ]
+   },
+   "properties": {
+    "id": "osm-3428211196",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/3428211196",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.9364506,
+     41.3996896
+    ]
+   },
+   "properties": {
+    "id": "osm-5032906260",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/5032906260",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4653305,
+     41.3166323
+    ]
+   },
+   "properties": {
+    "id": "osm-5127576771",
+    "type": "cctv",
+    "direction": 270,
+    "zone": "traffic",
+    "source": "https://www.openstreetmap.org/node/5127576771",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4653431,
+     41.3166706
+    ]
+   },
+   "properties": {
+    "id": "osm-5127576772",
+    "type": "cctv",
+    "direction": 270,
+    "zone": "traffic",
+    "source": "https://www.openstreetmap.org/node/5127576772",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.46527,
+     41.3167151
+    ]
+   },
+   "properties": {
+    "id": "osm-5127576773",
+    "type": "cctv",
+    "direction": 315,
+    "zone": "traffic",
+    "source": "https://www.openstreetmap.org/node/5127576773",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.465041,
+     41.3167581
+    ]
+   },
+   "properties": {
+    "id": "osm-5127576775",
+    "type": "cctv",
+    "direction": 100,
+    "zone": "traffic",
+    "source": "https://www.openstreetmap.org/node/5127576775",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4650536,
+     41.3167963
+    ]
+   },
+   "properties": {
+    "id": "osm-5127576776",
+    "type": "cctv",
+    "direction": 100,
+    "zone": "traffic",
+    "source": "https://www.openstreetmap.org/node/5127576776",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.4650661,
+     41.3168346
+    ]
+   },
+   "properties": {
+    "id": "osm-5127576777",
+    "type": "cctv",
+    "direction": 100,
+    "zone": "traffic",
+    "source": "https://www.openstreetmap.org/node/5127576777",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.0823268,
+     41.1151829
+    ]
+   },
+   "properties": {
+    "id": "osm-6017291486",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/6017291486",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.0819169,
+     41.1154043
+    ]
+   },
+   "properties": {
+    "id": "osm-6017526486",
+    "type": "cctv",
+    "source": "https://www.openstreetmap.org/node/6017526486",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.5115136,
+     42.0678864
+    ]
+   },
+   "properties": {
+    "id": "osm-7090858569",
+    "type": "cctv",
+    "operator": "Bashkia Shkodër",
+    "zone": "town",
+    "source": "https://www.openstreetmap.org/node/7090858569",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.5085283,
+     42.0646251
+    ]
+   },
+   "properties": {
+    "id": "osm-8528477764",
+    "type": "cctv",
+    "operator": "Bashkia Shkodër",
+    "zone": "town",
+    "source": "https://www.openstreetmap.org/node/8528477764",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.5031994,
+     42.0739424
+    ]
+   },
+   "properties": {
+    "id": "osm-8528477765",
+    "type": "cctv",
+    "operator": "Bashkia Shkodër",
+    "zone": "town",
+    "source": "https://www.openstreetmap.org/node/8528477765",
+    "verified": true
+   }
+  }
+ ]
+}

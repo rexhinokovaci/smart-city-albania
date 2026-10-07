@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Raportim sigurie / Security report
+    url: https://github.com/rexhinokovaci/smart-city-albania/security/advisories/new
+    about: Raporto privatisht dobësi sigurie.

@@ -1,0 +1,79 @@
+:root {
+  --bg: #0b0d10; --surface: #14171c; --surface-2: #1c2027; --border: #2a2f38;
+  --text: #e8eaed; --muted: #9aa3ad; --accent: #e41e20; --accent-ink: #fff;
+  --radius: 12px; --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.55 var(--font); }
+a { color: #ff6b6b; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 1000; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 600; white-space: nowrap; }
+.brand b { color: var(--accent); }
+.topnav { display: flex; align-items: center; gap: 14px; font-size: 14px; }
+.topnav a { color: var(--muted); text-decoration: none; }
+.topnav a:hover, .topnav a[aria-current] { color: var(--text); }
+.chip { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 12px; cursor: pointer; }
+
+/* Map app */
+body.app { height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+.layout { flex: 1; display: grid; grid-template-columns: 340px minmax(0, 1fr); min-height: 0; }
+#map { height: 100%; background: #111; }
+.panel { background: var(--surface); border-right: 1px solid var(--border); padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+.sheet-handle { display: none; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.stats div { background: var(--surface-2); border-radius: var(--radius); padding: 10px; display: flex; flex-direction: column; }
+.stats strong { font-size: 22px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stats span { font-size: 12px; color: var(--muted); }
+.search input { width: 100%; padding: 10px 12px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg); color: var(--text); font: inherit; }
+.btn { display: block; text-align: center; padding: 11px 14px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:focus-visible, input:focus-visible, .chip:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.nearby { margin: 0; padding: 10px 12px; background: var(--surface-2); border-radius: var(--radius); font-size: 14px; }
+.filters { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+.filters legend { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 6px; }
+.filters label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.dot.alpr { background: #e41e20; } .dot.cctv { background: #3b82f6; } .dot.dome { background: #a855f7; } .dot.speed { background: #f59e0b; } .dot.other { background: #94a3b8; }
+.fineprint { margin: 0; font-size: 12px; color: var(--muted); }
+.cam-icon { background: none; border: 0; }
+.basemap { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.6); }
+.badge { background: #fbbf24; color: #111; border-radius: 6px; padding: 1px 6px; font-size: 11px; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--surface); color: var(--text); }
+.leaflet-popup-content { font: 14px/1.5 var(--font); }
+.marker-cluster div { background: rgba(228, 30, 32, .85); color: #fff; font-weight: 700; }
+.marker-cluster { background: rgba(228, 30, 32, .3); }
+.noscript { padding: 16px; }
+
+@media (max-width: 760px) {
+  .topnav a { display: none; }
+  .topnav a:first-child { display: inline; }
+  .brand span { font-size: 15px; }
+  .layout { grid-template-columns: minmax(0, 1fr); position: relative; }
+  .panel { position: absolute; left: 0; right: 0; bottom: 0; z-index: 900; max-height: 62dvh; border-right: 0; border-top: 1px solid var(--border); border-radius: 16px 16px 0 0; padding-top: 6px; transition: transform .25s ease; }
+  .panel.collapsed { transform: translateY(calc(100% - 104px)); }
+  .sheet-handle { display: block; align-self: center; width: 44px; height: 18px; border: 0; background: none; cursor: pointer; }
+  .sheet-handle::before { content: ""; display: block; width: 44px; height: 5px; border-radius: 3px; background: var(--border); }
+}
+
+/* Content pages */
+.page { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+.page h1 { font-size: clamp(26px, 5vw, 38px); line-height: 1.15; margin: 0 0 8px; }
+.page .meta { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+.page h2 { margin-top: 36px; }
+.page img { max-width: 100%; height: auto; }
+.page blockquote { border-left: 3px solid var(--accent); margin: 0; padding: 4px 16px; color: var(--muted); }
+.page table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; }
+.page th, .page td { border: 1px solid var(--border); padding: 8px; text-align: left; }
+.sources { margin-top: 40px; padding: 16px; background: var(--surface); border-radius: var(--radius); font-size: 14px; overflow-wrap: anywhere; }
+.cards { list-style: none; padding: 0; display: grid; gap: 12px; }
+.cards a { display: block; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); text-decoration: none; }
+.cards a:hover { border-color: var(--accent); }
+.cards small { color: var(--muted); display: block; margin-top: 4px; }
+.cta { margin-top: 32px; display: inline-block; }
+.site-footer { border-top: 1px solid var(--border); padding: 20px 16px; color: var(--muted); font-size: 13px; text-align: center; }
+@media (max-width: 560px) {
+  body:not(.app) .topnav { gap: 10px; font-size: 13px; }
+  body:not(.app) .topnav a:nth-child(n+4) { display: none; }
+}
