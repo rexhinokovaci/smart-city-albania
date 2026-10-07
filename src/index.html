@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' https://unpkg.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Harta e Kamerave — Smart City Albania</title>
   <meta name="description" content="Harta publike e kamerave të mbikëqyrjes dhe lexuesve të targave (ALPR) në Shqipëri. Shiko ku janë kamerat, njih të drejtat e tua dhe raporto kamera të reja.">
   <link rel="canonical" href="{{SITE_URL}}/">
@@ -15,8 +17,8 @@
   <link rel="alternate" type="application/rss+xml" title="Lajme — Smart City Albania" href="{{SITE_URL}}/feed.xml">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="">
   <link rel="stylesheet" href="assets/style.css">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Dataset","name":"Smart City Albania — Harta e Kamerave","description":"Vendndodhjet publike të kamerave të mbikëqyrjes dhe lexuesve të targave në Shqipëri.","url":"{{SITE_URL}}/","spatialCoverage":{"@type":"Place","name":"Shqipëri"},"creator":{"@type":"Organization","name":"Modex Apps"}}
@@ -73,7 +75,7 @@
   <noscript><p class="noscript">Harta kërkon JavaScript. <a href="lajme/">Lexo lajmet</a> · <a href="qytete/">Qytetet</a></p></noscript>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr" crossorigin=""></script>
   <script src="assets/app.js" type="module"></script>
 </body>
 </html>

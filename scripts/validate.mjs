@@ -48,6 +48,8 @@ async function validateContent() {
           if (!sources.length) err(where, `${kind} posts must list at least one source URL`);
           for (const s of sources) if (!/^https:\/\//.test(s)) err(where, `source must be an https URL: ${s}`);
         }
+        if (/<\/?[a-z][\s\S]*?>/i.test(body)) err(where, "raw HTML is not allowed in content; use Markdown");
+        if (/\]\(\s*(javascript|data|vbscript):/i.test(body)) err(where, "unsafe link scheme");
         if (body.trim().length < 200) err(where, "body too short (< 200 chars)");
       } catch (e) {
         err(where, e.message);

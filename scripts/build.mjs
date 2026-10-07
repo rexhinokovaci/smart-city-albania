@@ -2,6 +2,8 @@
 import { cp, mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { marked } from "marked";
+
+marked.use({ renderer: { html: (token) => esc(typeof token === "string" ? token : token.text) } });
 import { CONTENT_KINDS, cityFor, escapeHtml as esc, parseFrontMatter, readJson } from "./lib.mjs";
 
 const SITE_URL = (process.env.SITE_URL ?? "https://rexhinokovaci.github.io/smart-city-albania").replace(/\/$/, "");
@@ -24,6 +26,8 @@ function layout({ title, description, path, depth, body, jsonLd, lang = "sq" }) 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self' data: https:; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>${esc(title)} — Smart City Albania</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${canonical}">
