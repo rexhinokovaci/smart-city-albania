@@ -1,17 +1,162 @@
 [
-  { "slug": "tirane", "name": "Tiranë", "lat": 41.3275, "lon": 19.8187, "radiusKm": 9 },
-  { "slug": "durres", "name": "Durrës", "lat": 41.3231, "lon": 19.4414, "radiusKm": 7 },
-  { "slug": "vlore", "name": "Vlorë", "lat": 40.4661, "lon": 19.4914, "radiusKm": 6 },
-  { "slug": "shkoder", "name": "Shkodër", "lat": 42.0683, "lon": 19.5126, "radiusKm": 6 },
-  { "slug": "elbasan", "name": "Elbasan", "lat": 41.1125, "lon": 20.0822, "radiusKm": 6 },
-  { "slug": "korce", "name": "Korçë", "lat": 40.6186, "lon": 20.7808, "radiusKm": 5 },
-  { "slug": "fier", "name": "Fier", "lat": 40.7239, "lon": 19.5561, "radiusKm": 5 },
-  { "slug": "berat", "name": "Berat", "lat": 40.7058, "lon": 19.9522, "radiusKm": 4 },
-  { "slug": "lushnje", "name": "Lushnjë", "lat": 40.9419, "lon": 19.705, "radiusKm": 4 },
-  { "slug": "kavaje", "name": "Kavajë", "lat": 41.1856, "lon": 19.5569, "radiusKm": 4 },
-  { "slug": "pogradec", "name": "Pogradec", "lat": 40.9025, "lon": 20.6525, "radiusKm": 4 },
-  { "slug": "gjirokaster", "name": "Gjirokastër", "lat": 40.0758, "lon": 20.1389, "radiusKm": 4 },
-  { "slug": "sarande", "name": "Sarandë", "lat": 39.8756, "lon": 20.0053, "radiusKm": 4 },
-  { "slug": "lezhe", "name": "Lezhë", "lat": 41.7836, "lon": 19.6436, "radiusKm": 4 },
-  { "slug": "kukes", "name": "Kukës", "lat": 42.0767, "lon": 20.4211, "radiusKm": 4 }
+ {
+  "slug": "tirane",
+  "name": "Tiranë",
+  "lat": 41.3275,
+  "lon": 19.8187,
+  "radiusKm": 7,
+  "smartCity": true
+ },
+ {
+  "slug": "durres",
+  "name": "Durrës",
+  "lat": 41.3231,
+  "lon": 19.4414,
+  "radiusKm": 7,
+  "smartCity": true
+ },
+ {
+  "slug": "kamez",
+  "name": "Kamëz",
+  "lat": 41.3817,
+  "lon": 19.7603,
+  "radiusKm": 3,
+  "smartCity": true
+ },
+ {
+  "slug": "kavaje",
+  "name": "Kavajë",
+  "lat": 41.1856,
+  "lon": 19.5569,
+  "radiusKm": 4,
+  "smartCity": true
+ },
+ {
+  "slug": "kruje",
+  "name": "Krujë",
+  "lat": 41.5092,
+  "lon": 19.7928,
+  "radiusKm": 3,
+  "smartCity": true
+ },
+ {
+  "slug": "lac",
+  "name": "Laç",
+  "lat": 41.6353,
+  "lon": 19.7131,
+  "radiusKm": 3,
+  "smartCity": true
+ },
+ {
+  "slug": "lezhe",
+  "name": "Lezhë",
+  "lat": 41.7836,
+  "lon": 19.6436,
+  "radiusKm": 4,
+  "smartCity": true
+ },
+ {
+  "slug": "rreshen",
+  "name": "Rrëshen",
+  "lat": 41.7675,
+  "lon": 19.8756,
+  "radiusKm": 3,
+  "smartCity": true
+ },
+ {
+  "slug": "shkoder",
+  "name": "Shkodër",
+  "lat": 42.0683,
+  "lon": 19.5126,
+  "radiusKm": 6,
+  "smartCity": true
+ },
+ {
+  "slug": "elbasan",
+  "name": "Elbasan",
+  "lat": 41.1125,
+  "lon": 20.0822,
+  "radiusKm": 6,
+  "smartCity": true
+ },
+ {
+  "slug": "pogradec",
+  "name": "Pogradec",
+  "lat": 40.9025,
+  "lon": 20.6525,
+  "radiusKm": 4,
+  "smartCity": true
+ },
+ {
+  "slug": "korce",
+  "name": "Korçë",
+  "lat": 40.6186,
+  "lon": 20.7808,
+  "radiusKm": 5,
+  "smartCity": true
+ },
+ {
+  "slug": "lushnje",
+  "name": "Lushnjë",
+  "lat": 40.9419,
+  "lon": 19.705,
+  "radiusKm": 4,
+  "smartCity": true
+ },
+ {
+  "slug": "fier",
+  "name": "Fier",
+  "lat": 40.7239,
+  "lon": 19.5561,
+  "radiusKm": 5,
+  "smartCity": true
+ },
+ {
+  "slug": "berat",
+  "name": "Berat",
+  "lat": 40.7058,
+  "lon": 19.9522,
+  "radiusKm": 4,
+  "smartCity": true
+ },
+ {
+  "slug": "vlore",
+  "name": "Vlorë",
+  "lat": 40.4661,
+  "lon": 19.4914,
+  "radiusKm": 6,
+  "smartCity": true
+ },
+ {
+  "slug": "sarande",
+  "name": "Sarandë",
+  "lat": 39.8756,
+  "lon": 20.0053,
+  "radiusKm": 4,
+  "smartCity": true
+ },
+ {
+  "slug": "gjirokaster",
+  "name": "Gjirokastër",
+  "lat": 40.0758,
+  "lon": 20.1389,
+  "radiusKm": 4,
+  "smartCity": true
+ },
+ {
+  "slug": "peshkopi",
+  "name": "Peshkopi",
+  "lat": 41.685,
+  "lon": 20.4289,
+  "radiusKm": 3,
+  "smartCity": true
+ },
+ {
+  "slug": "kukes",
+  "name": "Kukës",
+  "lat": 42.0767,
+  "lon": 20.4211,
+  "radiusKm": 4,
+  "smartCity": true
+ }
 ]

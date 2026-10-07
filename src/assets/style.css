@@ -35,11 +35,25 @@ body.app { height: 100dvh; display: flex; flex-direction: column; overflow: hidd
 .filters legend { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 6px; }
 .filters label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-.dot.alpr { background: #e41e20; } .dot.cctv { background: #3b82f6; } .dot.dome { background: #a855f7; } .dot.speed { background: #f59e0b; } .dot.other { background: #94a3b8; }
+.dot.alpr { background: #e41e20; } .dot.cctv { background: #2563eb; } .dot.dome { background: #9333ea; } .dot.speed { background: #d97706; } .dot.other { background: #64748b; }
 .fineprint { margin: 0; font-size: 12px; color: var(--muted); }
 .cam-icon { background: none; border: 0; }
-.basemap { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.6); }
+.basemap-dark { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.6); }
 .badge { background: #fbbf24; color: #111; border-radius: 6px; padding: 1px 6px; font-size: 11px; }
+.badge.official { background: #16a34a; color: #fff; }
+.toggle { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.pop-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pop-name { font-weight: 600; margin: 6px 0 2px; }
+.pop table { border-collapse: collapse; margin: 8px 0; width: 100%; }
+.pop th { text-align: left; font-weight: 500; color: var(--muted); padding: 2px 10px 2px 0; white-space: nowrap; vertical-align: top; }
+.pop td { padding: 2px 0; }
+.pop-links { display: flex; flex-wrap: wrap; gap: 4px 6px; margin-bottom: 4px; }
+.pop-coords { color: var(--muted); }
+.legend { background: rgba(20, 23, 28, .92); color: var(--text); padding: 10px 12px; border-radius: 10px; font-size: 12px; line-height: 1.7; box-shadow: 0 2px 10px rgba(0,0,0,.3); max-width: 230px; }
+.legend .dot { margin-right: 8px; vertical-align: -1px; }
+.legend-cone { display: flex; gap: 8px; align-items: flex-start; margin-top: 4px; padding-top: 6px; border-top: 1px solid var(--border); line-height: 1.35; }
+.leaflet-control-layers { background: var(--surface); color: var(--text); border: 1px solid var(--border) !important; }
+@media (max-width: 760px) { .legend { display: none; } }
 .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--surface); color: var(--text); }
 .leaflet-popup-content { font: 14px/1.5 var(--font); }
 .marker-cluster div { background: rgba(228, 30, 32, .85); color: #fff; font-weight: 700; }

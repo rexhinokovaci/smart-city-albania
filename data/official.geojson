@@ -1,0 +1,363 @@
+{
+ "type": "FeatureCollection",
+ "generated": "2026-10-07T20:29:52.977Z",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.806258,
+     41.334275
+    ]
+   },
+   "properties": {
+    "id": "tirana-2",
+    "type": "cctv",
+    "name": "Unaze - Don Bosko",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.767025,
+     41.313968
+    ]
+   },
+   "properties": {
+    "id": "tirana-3",
+    "type": "cctv",
+    "name": "Sheshi Kombinat",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.791818,
+     41.322354
+    ]
+   },
+   "properties": {
+    "id": "tirana-5",
+    "type": "cctv",
+    "name": "Ura teknologjike",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.815758,
+     41.313655
+    ]
+   },
+   "properties": {
+    "id": "tirana-8",
+    "type": "cctv",
+    "name": "Diga Liqenit prane Gardes se Republikes",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.820827,
+     41.319457
+    ]
+   },
+   "properties": {
+    "id": "tirana-9",
+    "type": "cctv",
+    "name": "Presidenca",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.82813,
+     41.31907
+    ]
+   },
+   "properties": {
+    "id": "tirana-10",
+    "type": "cctv",
+    "name": "Shkolla Gjuhet e Huaja",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.833293,
+     41.316529
+    ]
+   },
+   "properties": {
+    "id": "tirana-11",
+    "type": "cctv",
+    "name": "Hyrja Rruges Elbasanit, Sauk",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.784938,
+     41.339748
+    ]
+   },
+   "properties": {
+    "id": "tirana-12",
+    "type": "cctv",
+    "name": "Hyrja RR.Durresit Prane Doganes Tiranes",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.815877,
+     41.329037
+    ]
+   },
+   "properties": {
+    "id": "tirana-15",
+    "type": "cctv",
+    "name": "Rr. Kavajes / Rr. Durresit / Rr. Ded Gjo Luli - 1",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.816308,
+     41.335674
+    ]
+   },
+   "properties": {
+    "id": "tirana-16",
+    "type": "cctv",
+    "name": "UNAZE - ZOG 1",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.820732,
+     41.334275
+    ]
+   },
+   "properties": {
+    "id": "tirana-17",
+    "type": "cctv",
+    "name": "I.N.S.I.G.U",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.821907,
+     41.328594
+    ]
+   },
+   "properties": {
+    "id": "tirana-18",
+    "type": "cctv",
+    "name": "Partizani panjohur",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.825163,
+     41.324948
+    ]
+   },
+   "properties": {
+    "id": "tirana-19",
+    "type": "cctv",
+    "name": "Rr. Elbasanit",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.834381,
+     41.33027
+    ]
+   },
+   "properties": {
+    "id": "tirana-20",
+    "type": "cctv",
+    "name": "UNAZE - BLV ZHAN D'ARK",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.829055,
+     41.34012
+    ]
+   },
+   "properties": {
+    "id": "tirana-22",
+    "type": "cctv",
+    "name": "UNAZE - DIBRES",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.838191,
+     41.345213
+    ]
+   },
+   "properties": {
+    "id": "tirana-23",
+    "type": "cctv",
+    "name": "Rr. Dibres / Rr. Bajram Curri",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.851186,
+     41.345323
+    ]
+   },
+   "properties": {
+    "id": "tirana-24",
+    "type": "cctv",
+    "name": "Instituti Higjenes",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "installed": "2018-06-12",
+    "source": "https://tirana.al/kamera-trafiku",
+    "verified": true,
+    "adapter": "tirana-traffic"
+   }
+  }
+ ]
+}

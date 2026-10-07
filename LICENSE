@@ -28,6 +28,10 @@ THIRD-PARTY MATERIAL
   - data/osm.geojson contains data (c) OpenStreetMap contributors, available
     under the Open Database License (ODbL) 1.0. That file is NOT covered by
     this license; the ODbL applies to it.
+  - data/official.geojson contains location data published by Albanian
+    public bodies (e.g. Bashkia Tiranë, https://tirana.al/kamera-trafiku),
+    reproduced as public-sector information with attribution. It is NOT
+    covered by this license.
   - Third-party libraries loaded at runtime (Leaflet, Leaflet.markercluster,
     marked) are governed by their own licenses.
 

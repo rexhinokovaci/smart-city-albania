@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' https://unpkg.com; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' https://unpkg.com; img-src 'self' data: https://tile.openstreetmap.org https://unpkg.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Harta e Kamerave — Smart City Albania</title>
   <meta name="description" content="Harta publike e kamerave të mbikëqyrjes dhe lexuesve të targave (ALPR) në Shqipëri. Shiko ku janë kamerat, njih të drejtat e tua dhe raporto kamera të reja.">
@@ -43,7 +43,7 @@
       <button class="sheet-handle" id="sheetToggle" type="button" aria-label="Hap/mbyll panelin"></button>
       <section class="stats" aria-live="polite">
         <div><strong id="statTotal">–</strong><span data-i18n="stats.total">kamera në hartë</span></div>
-        <div><strong id="statAlpr">–</strong><span data-i18n="stats.alpr">lexues targash</span></div>
+        <div><strong id="statOfficial">–</strong><span data-i18n="stats.official">nga burime zyrtare</span></div>
         <div><strong id="statCities">–</strong><span data-i18n="stats.cities">qytete</span></div>
       </section>
 
@@ -56,14 +56,23 @@
       <button id="locate" class="btn btn-primary" type="button" data-i18n="locate">📍 Kamerat pranë meje</button>
       <p id="nearby" class="nearby" hidden></p>
 
-      <fieldset class="filters">
+      <fieldset class="filters" id="typeFilters">
         <legend data-i18n="filters.title">Lloji</legend>
-        <label><input type="checkbox" value="alpr" checked><i class="dot alpr"></i><span data-i18n="type.alpr">Lexues targash (ALPR)</span></label>
-        <label><input type="checkbox" value="cctv" checked><i class="dot cctv"></i><span data-i18n="type.cctv">Kamera CCTV</span></label>
-        <label><input type="checkbox" value="dome" checked><i class="dot dome"></i><span data-i18n="type.dome">Kamera kupolë (PTZ)</span></label>
-        <label><input type="checkbox" value="speed" checked><i class="dot speed"></i><span data-i18n="type.speed">Kamera shpejtësie</span></label>
-        <label><input type="checkbox" value="other" checked><i class="dot other"></i><span data-i18n="type.other">Tjetër</span></label>
+        <label><input type="checkbox" name="type" value="alpr" checked><i class="dot alpr"></i><span data-i18n="type.alpr">Lexues targash (ALPR)</span></label>
+        <label><input type="checkbox" name="type" value="cctv" checked><i class="dot cctv"></i><span data-i18n="type.cctv">Kamera CCTV</span></label>
+        <label><input type="checkbox" name="type" value="dome" checked><i class="dot dome"></i><span data-i18n="type.dome">Kamera kupolë (PTZ)</span></label>
+        <label><input type="checkbox" name="type" value="speed" checked><i class="dot speed"></i><span data-i18n="type.speed">Kamera shpejtësie</span></label>
+        <label><input type="checkbox" name="type" value="other" checked><i class="dot other"></i><span data-i18n="type.other">Tjetër</span></label>
       </fieldset>
+
+      <fieldset class="filters">
+        <legend data-i18n="sources.title">Burimi</legend>
+        <label><input type="checkbox" name="origin" value="official" checked><span data-i18n="origin.official">Zyrtar (bashki, policia)</span></label>
+        <label><input type="checkbox" name="origin" value="community" checked><span data-i18n="origin.community">Raportime të verifikuara</span></label>
+        <label><input type="checkbox" name="origin" value="osm" checked><span data-i18n="origin.osm">OpenStreetMap</span></label>
+      </fieldset>
+
+      <label class="toggle"><input type="checkbox" id="showCones" checked><span data-i18n="cones">Shfaq fushën e shikimit</span></label>
 
       <a class="btn" id="report" href="https://github.com/rexhinokovaci/smart-city-albania/issues/new?template=new-camera.yml" target="_blank" rel="noopener" data-i18n="report">＋ Raporto një kamerë</a>
       <p class="fineprint" data-i18n="privacy">Kjo faqe nuk përdor cookies dhe nuk gjurmon vizitorët. Vendndodhja jote përpunohet vetëm në pajisjen tënde.</p>

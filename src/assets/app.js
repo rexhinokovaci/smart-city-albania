@@ -2,16 +2,24 @@
 const I18N = {
   sq: {
     "nav.news": "Lajme", "nav.guides": "Të drejtat", "nav.cities": "Qytetet",
-    "stats.total": "kamera në hartë", "stats.alpr": "lexues targash", "stats.cities": "qytete",
+    "stats.total": "kamera në hartë", "stats.official": "nga burime zyrtare", "stats.cities": "qytete",
     "search.label": "Kërko qytetin", "search.placeholder": "Kërko qytetin…",
-    "locate": "📍 Kamerat pranë meje", "filters.title": "Lloji",
+    "locate": "📍 Kamerat pranë meje", "filters.title": "Lloji", "sources.title": "Burimi",
     "type.alpr": "Lexues targash (ALPR)", "type.cctv": "Kamera CCTV", "type.dome": "Kamera kupolë (PTZ)",
     "type.speed": "Kamera shpejtësie", "type.other": "Tjetër",
+    "origin.official": "Zyrtar (bashki, policia)", "origin.community": "Raportime të verifikuara", "origin.osm": "OpenStreetMap",
+    "cones": "Shfaq fushën e shikimit",
     "report": "＋ Raporto një kamerë",
     "privacy": "Kjo faqe nuk përdor cookies dhe nuk gjurmon vizitorët. Vendndodhja jote përpunohet vetëm në pajisjen tënde.",
     "updated": "Përditësuar:",
     "popup.operator": "Operatori", "popup.direction": "Drejtimi", "popup.source": "Burimi",
-    "popup.unverified": "E paverifikuar", "popup.fix": "Raporto gabim",
+    "popup.view": "Fusha e shikimit", "popup.viewEst": "e vlerësuar", "popup.mount": "Montimi",
+    "popup.manufacturer": "Prodhuesi", "popup.installed": "Instaluar", "popup.zone": "Zona",
+    "popup.city": "Qyteti", "popup.purpose.traffic": "Monitorim trafiku",
+    "popup.unverified": "E paverifikuar", "popup.fix": "Raporto gabim", "popup.osm": "Ndrysho në OSM",
+    "popup.official": "Burim zyrtar", "popup.noDirection": "drejtimi i panjohur",
+    "legend.cone": "Koni = fusha e shikimit · rrethi me vija = drejtimi i panjohur (vlera tipike, jo të matura)",
+    "map.light": "Hartë e çelët", "map.dark": "Hartë e errët",
     "nearby.result": (n, km) => `${n} kamera brenda ${km} km nga ti.`,
     "nearby.none": (km) => `Asnjë kamerë e regjistruar brenda ${km} km. Shihe një? Raportoje.`,
     "nearby.error": "Nuk mund të marrim vendndodhjen. Kontrollo lejet e shfletuesit.",
@@ -19,25 +27,39 @@ const I18N = {
   },
   en: {
     "nav.news": "News", "nav.guides": "Your rights", "nav.cities": "Cities",
-    "stats.total": "cameras mapped", "stats.alpr": "plate readers", "stats.cities": "cities",
+    "stats.total": "cameras mapped", "stats.official": "from official sources", "stats.cities": "cities",
     "search.label": "Search city", "search.placeholder": "Search a city…",
-    "locate": "📍 Cameras near me", "filters.title": "Type",
+    "locate": "📍 Cameras near me", "filters.title": "Type", "sources.title": "Source",
     "type.alpr": "Plate reader (ALPR)", "type.cctv": "CCTV camera", "type.dome": "Dome camera (PTZ)",
     "type.speed": "Speed camera", "type.other": "Other",
+    "origin.official": "Official (municipality, police)", "origin.community": "Verified reports", "origin.osm": "OpenStreetMap",
+    "cones": "Show field of view",
     "report": "＋ Report a camera",
     "privacy": "No cookies, no tracking. Your location is processed only on your device.",
     "updated": "Updated:",
     "popup.operator": "Operator", "popup.direction": "Facing", "popup.source": "Source",
-    "popup.unverified": "Unverified", "popup.fix": "Report an error",
+    "popup.view": "Field of view", "popup.viewEst": "estimated", "popup.mount": "Mount",
+    "popup.manufacturer": "Manufacturer", "popup.installed": "Installed", "popup.zone": "Zone",
+    "popup.city": "City", "popup.purpose.traffic": "Traffic monitoring",
+    "popup.unverified": "Unverified", "popup.fix": "Report an error", "popup.osm": "Edit on OSM",
+    "popup.official": "Official source", "popup.noDirection": "direction unknown",
+    "legend.cone": "Cone = field of view · dashed circle = direction unknown (typical values, not measured)",
+    "map.light": "Light map", "map.dark": "Dark map",
     "nearby.result": (n, km) => `${n} cameras within ${km} km of you.`,
     "nearby.none": (km) => `No cameras recorded within ${km} km. Spot one? Report it.`,
     "nearby.error": "Could not get your location. Check browser permissions.",
     "load.error": "Data failed to load. Please try again later.",
   },
 };
-const COLORS = { alpr: "#e41e20", cctv: "#3b82f6", dome: "#a855f7", speed: "#f59e0b", other: "#94a3b8" };
+const COLORS = { alpr: "#e41e20", cctv: "#2563eb", dome: "#9333ea", speed: "#d97706", other: "#64748b" };
+// Typical field of view per camera type when the source gives none: [angle in degrees, range in metres].
+// These are display estimates, labelled as such in the UI; real values vary with lens and mounting.
+const VIEW_DEFAULTS = { alpr: [30, 40], cctv: [60, 60], dome: [360, 80], speed: [20, 60], other: [60, 40] };
+const CONE_MIN_ZOOM = 15;
 const REPO = "https://github.com/rexhinokovaci/smart-city-albania";
 const NEARBY_KM = 2;
+const COMPASS = ["V", "VL", "L", "JL", "J", "JP", "P", "VP"];
+const COMPASS_EN = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 
 let lang = readPref("lang") === "en" ? "en" : "sq";
 const t = (key) => I18N[lang][key] ?? I18N.sq[key] ?? key;
@@ -45,6 +67,7 @@ const t = (key) => I18N[lang][key] ?? I18N.sq[key] ?? key;
 function readPref(k) { try { return localStorage.getItem(k); } catch { return null; } }
 function writePref(k, v) { try { localStorage.setItem(k, v); } catch { /* storage unavailable */ } }
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const safeUrl = (u) => (/^https:\/\//.test(u ?? "") ? u : null);
 
 function applyI18n() {
   document.documentElement.lang = lang;
@@ -59,29 +82,76 @@ function distanceKm(a, b) {
   return 6371 * 2 * Math.asin(Math.sqrt(h));
 }
 
+// Point at `metres` along compass `bearing` from `origin` (equirectangular; accurate at these distances).
+function offset(origin, bearing, metres) {
+  const rad = (bearing * Math.PI) / 180;
+  const dLat = (metres * Math.cos(rad)) / 111_320;
+  const dLng = (metres * Math.sin(rad)) / (111_320 * Math.cos((origin.lat * Math.PI) / 180));
+  return L.latLng(origin.lat + dLat, origin.lng + dLng);
+}
+
+function viewOf(p) {
+  const [angle, range] = VIEW_DEFAULTS[p.type] ?? VIEW_DEFAULTS.other;
+  return { angle: p.fov ?? angle, range: p.range ?? range, estimated: !(p.fov && p.range) };
+}
+
+function coneLayer(p) {
+  const { angle, range } = viewOf(p);
+  const style = { color: COLORS[p.type] ?? COLORS.other, weight: 1, opacity: 0.6, fillOpacity: 0.18, interactive: false };
+  if (angle >= 360) return L.circle(p.latlng, { radius: range, ...style });
+  // Direction unknown: show the reach as a dashed circle instead of guessing a heading.
+  if (!Number.isInteger(p.direction)) return L.circle(p.latlng, { radius: range, ...style, dashArray: "5 4", fillOpacity: 0.1, opacity: 0.75 });
+  const pts = [p.latlng];
+  const steps = Math.max(6, Math.round(angle / 5));
+  for (let i = 0; i <= steps; i++) pts.push(offset(p.latlng, p.direction - angle / 2 + (angle * i) / steps, range));
+  return L.polygon(pts, style);
+}
+
 function cameraIcon(p) {
   const color = COLORS[p.type] ?? COLORS.other;
-  const cone = Number.isInteger(p.direction)
-    ? `<path d="M20 20 L8 0 A22 22 0 0 1 32 0 Z" fill="${color}" opacity=".28" transform="rotate(${p.direction} 20 20)"/>`
+  const ring = p.origin === "official" ? "#111" : p.verified === false ? "#fbbf24" : "#fff";
+  const arrow = Number.isInteger(p.direction)
+    ? `<path d="M14 2 L18 9 L10 9 Z" fill="${color}" stroke="#fff" stroke-width="1" transform="rotate(${p.direction} 14 14)"/>`
     : "";
-  const ring = p.verified ? "#fff" : "#fbbf24";
   return L.divIcon({
     className: "cam-icon",
-    html: `<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">${cone}<circle cx="20" cy="20" r="7" fill="${color}" stroke="${ring}" stroke-width="2.5"/></svg>`,
-    iconSize: [40, 40], iconAnchor: [20, 20], popupAnchor: [0, -8],
+    html: `<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">${arrow}<circle cx="14" cy="14" r="7" fill="${color}" stroke="${ring}" stroke-width="2.5"/></svg>`,
+    iconSize: [28, 28], iconAnchor: [14, 14], popupAnchor: [0, -8],
   });
 }
 
-function popupHtml(p, latlng) {
-  const rows = [
-    `<strong>${esc(t(`type.${p.type}`))}</strong>${p.verified ? "" : ` <span class="badge">${esc(t("popup.unverified"))}</span>`}`,
-    p.operator && `${esc(t("popup.operator"))}: ${esc(p.operator)}`,
-    Number.isInteger(p.direction) && `${esc(t("popup.direction"))}: ${p.direction}°`,
-    /^https:\/\//.test(p.source ?? "") && `<a href="${esc(p.source)}" target="_blank" rel="noopener">${esc(t("popup.source"))}</a>`,
+function compass(deg) {
+  const i = Math.round(deg / 45) % 8;
+  return (lang === "en" ? COMPASS_EN : COMPASS)[i];
+}
+
+function popupHtml(p) {
+  const v = viewOf(p);
+  const row = (label, value) => (value ? `<tr><th>${esc(label)}</th><td>${value}</td></tr>` : "");
+  const osmId = p.id.startsWith("osm-") ? p.id.slice(4) : null;
+  const links = [
+    safeUrl(p.source) && `<a href="${esc(p.source)}" target="_blank" rel="noopener">${esc(p.origin === "official" ? t("popup.official") : t("popup.source"))} ↗</a>`,
+    osmId && `<a href="https://www.openstreetmap.org/edit?node=${encodeURIComponent(osmId)}" target="_blank" rel="noopener">${esc(t("popup.osm"))} ↗</a>`,
     `<a href="${REPO}/issues/new?template=correction.yml&title=${encodeURIComponent(`Korrigjim: ${p.id}`)}&camera_id=${encodeURIComponent(p.id)}" target="_blank" rel="noopener">${esc(t("popup.fix"))}</a>`,
-    `<small>${latlng.lat.toFixed(5)}, ${latlng.lng.toFixed(5)}</small>`,
-  ];
-  return rows.filter(Boolean).join("<br>");
+  ].filter(Boolean).join(" · ");
+  return `<div class="pop">
+    <div class="pop-head"><i class="dot ${esc(p.type)}"></i><strong>${esc(t(`type.${p.type}`))}</strong>
+      ${p.origin === "official" ? `<span class="badge official">${esc(t("popup.official"))}</span>` : ""}
+      ${p.verified === false ? `<span class="badge">${esc(t("popup.unverified"))}</span>` : ""}</div>
+    ${p.name ? `<div class="pop-name">${esc(p.name)}</div>` : ""}
+    <table>
+      ${row(t("popup.operator"), esc(p.operator))}
+      ${row(t("popup.direction"), Number.isInteger(p.direction) ? `${p.direction}° ${compass(p.direction)}` : esc(t("popup.noDirection")))}
+      ${row(t("popup.view"), `${v.angle >= 360 ? "360°" : `${v.angle}°`} · ~${v.range} m${v.estimated ? ` <small>(${esc(t("popup.viewEst"))})</small>` : ""}`)}
+      ${row(t("popup.zone"), p.purpose === "traffic" ? esc(t("popup.purpose.traffic")) : esc(p.zone))}
+      ${row(t("popup.mount"), esc(p.mount))}
+      ${row(t("popup.manufacturer"), esc(p.manufacturer))}
+      ${row(t("popup.installed"), esc(p.installed))}
+      ${row(t("popup.city"), esc(p.city))}
+    </table>
+    <div class="pop-links">${links}</div>
+    <small class="pop-coords">${p.latlng.lat.toFixed(5)}, ${p.latlng.lng.toFixed(5)}</small>
+  </div>`;
 }
 
 async function loadJson(url) {
@@ -90,27 +160,39 @@ async function loadJson(url) {
   return res.json();
 }
 
+function legendControl() {
+  const c = L.control({ position: "bottomright" });
+  c.onAdd = () => {
+    const div = L.DomUtil.create("div", "legend");
+    div.innerHTML = Object.keys(COLORS).map((k) => `<div><i class="dot ${k}"></i>${esc(t(`type.${k}`))}</div>`).join("")
+      + `<div class="legend-cone"><svg width="22" height="14" aria-hidden="true"><path d="M2 12 L20 2 L20 12 Z" fill="#e41e20" fill-opacity=".25" stroke="#e41e20"/></svg>${esc(t("legend.cone"))}</div>`;
+    L.DomEvent.disableClickPropagation(div);
+    return div;
+  };
+  return c;
+}
+
 async function main() {
   applyI18n();
-  const map = L.map("map", { zoomControl: true, preferCanvas: true }).setView([41.15, 20.0], 8);
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19, className: "basemap",
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
-  const cluster = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45, chunkedLoading: true });
+  const map = L.map("map", { zoomControl: true, preferCanvas: false }).setView([41.15, 20.0], 8);
+  const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+  const light = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution });
+  const dark = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution, className: "basemap-dark" });
+  (readPref("basemap") === "dark" ? dark : light).addTo(map);
+  const basemaps = { [t("map.light")]: light, [t("map.dark")]: dark };
+  L.control.layers(basemaps, null, { position: "topright" }).addTo(map);
+  map.on("baselayerchange", (e) => writePref("basemap", e.layer === dark ? "dark" : "light"));
+  let legend = legendControl().addTo(map);
+
+  const cluster = L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45, disableClusteringAtZoom: CONE_MIN_ZOOM, chunkedLoading: true });
+  const cones = L.layerGroup();
   map.addLayer(cluster);
 
-  let cameras = [];
+  const cameras = [];
   let cities = [];
   try {
-    const [curated, osm, cityList, meta] = await Promise.all([
-      loadJson("data/cameras.geojson"), loadJson("data/osm.geojson"), loadJson("data/cities.json"), loadJson("data/meta.json"),
-    ]);
-    // Curated entries win over OSM duplicates sharing the same id.
-    const seen = new Set();
-    for (const f of [...curated.features, ...osm.features]) {
-      if (seen.has(f.properties.id)) continue;
-      seen.add(f.properties.id);
+    const [all, cityList, meta] = await Promise.all([loadJson("data/all.geojson"), loadJson("data/cities.json"), loadJson("data/meta.json")]);
+    for (const f of all.features) {
       const [lng, lat] = f.geometry.coordinates;
       cameras.push({ ...f.properties, latlng: L.latLng(lat, lng) });
     }
@@ -123,37 +205,51 @@ async function main() {
     document.getElementById("nearby").textContent = t("load.error");
   }
 
-  const markers = cameras.map((p) => {
-    const m = L.marker(p.latlng, { icon: cameraIcon(p), keyboard: true, title: t(`type.${p.type}`) });
-    m.bindPopup(() => popupHtml(p, p.latlng));
-    m.cam = p;
-    return m;
-  });
-
-  const filterBoxes = [...document.querySelectorAll(".filters input")];
-  function render() {
-    const active = new Set(filterBoxes.filter((b) => b.checked).map((b) => b.value));
-    const visible = markers.filter((m) => active.has(m.cam.type));
-    cluster.clearLayers();
-    cluster.addLayers(visible);
-    document.getElementById("statTotal").textContent = visible.length.toLocaleString(lang);
-    document.getElementById("statAlpr").textContent = visible.filter((m) => m.cam.type === "alpr").length.toLocaleString(lang);
+  for (const p of cameras) {
+    p.marker = L.marker(p.latlng, { icon: cameraIcon(p), keyboard: true, title: p.name ?? t(`type.${p.type}`) });
+    p.marker.bindPopup(() => popupHtml(p), { maxWidth: 300 });
+    p.cone = coneLayer(p);
   }
-  filterBoxes.forEach((b) => b.addEventListener("change", render));
+
+  const typeBoxes = [...document.querySelectorAll('input[name="type"]')];
+  const originBoxes = [...document.querySelectorAll('input[name="origin"]')];
+  const showCones = document.getElementById("showCones");
+  showCones.checked = readPref("cones") !== "off";
+
+  function syncCones() {
+    const on = showCones.checked && map.getZoom() >= CONE_MIN_ZOOM;
+    if (on && !map.hasLayer(cones)) map.addLayer(cones);
+    if (!on && map.hasLayer(cones)) map.removeLayer(cones);
+  }
+
+  function render() {
+    const types = new Set(typeBoxes.filter((b) => b.checked).map((b) => b.value));
+    const origins = new Set(originBoxes.filter((b) => b.checked).map((b) => b.value));
+    const visible = cameras.filter((p) => types.has(p.type) && origins.has(p.origin));
+    cluster.clearLayers();
+    cluster.addLayers(visible.map((p) => p.marker));
+    cones.clearLayers();
+    visible.forEach((p) => p.cone && cones.addLayer(p.cone));
+    syncCones();
+    document.getElementById("statTotal").textContent = visible.length.toLocaleString(lang);
+    document.getElementById("statOfficial").textContent = visible.filter((p) => p.origin === "official").length.toLocaleString(lang);
+  }
+  [...typeBoxes, ...originBoxes].forEach((b) => b.addEventListener("change", render));
+  showCones.addEventListener("change", () => { writePref("cones", showCones.checked ? "on" : "off"); syncCones(); });
+  map.on("zoomend", syncCones);
   render();
 
   // City search
-  const list = document.getElementById("cityList");
-  list.innerHTML = cities.map((c) => `<option value="${esc(c.name)}">`).join("");
+  document.getElementById("cityList").innerHTML = cities.map((c) => `<option value="${esc(c.name)}">`).join("");
   const search = document.getElementById("search");
+  const norm = (s) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
   search.addEventListener("change", () => {
-    const q = search.value.trim().toLowerCase();
-    const norm = (s) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
-    const city = cities.find((c) => norm(c.name).startsWith(norm(q)));
-    if (city) map.flyTo([city.lat, city.lon], 13);
+    const q = norm(search.value.trim());
+    const city = q && cities.find((c) => norm(c.name).startsWith(q));
+    if (city) map.flyTo([city.lat, city.lon], 14);
   });
 
-  // Near me — geolocation never leaves the device.
+  // Near me: geolocation never leaves the device.
   const nearby = document.getElementById("nearby");
   let youMarker;
   document.getElementById("locate").addEventListener("click", () => {
@@ -161,7 +257,7 @@ async function main() {
     navigator.geolocation.getCurrentPosition((pos) => {
       const me = L.latLng(pos.coords.latitude, pos.coords.longitude);
       youMarker?.remove();
-      youMarker = L.circle(me, { radius: NEARBY_KM * 1000, color: "#e41e20", weight: 1, fillOpacity: 0.06 }).addTo(map);
+      youMarker = L.circle(me, { radius: NEARBY_KM * 1000, color: "#e41e20", weight: 1, fillOpacity: 0.05 }).addTo(map);
       map.flyTo(me, 15);
       const n = cameras.filter((c) => distanceKm(me, c.latlng) <= NEARBY_KM).length;
       nearby.hidden = false;
@@ -181,10 +277,13 @@ async function main() {
     lang = lang === "sq" ? "en" : "sq";
     writePref("lang", lang);
     applyI18n();
+    legend.remove();
+    legend = legendControl().addTo(map);
     render();
   });
-  if (matchMedia("(max-width: 760px)").matches) document.getElementById("panel").classList.add("collapsed");
-  document.getElementById("sheetToggle").addEventListener("click", () => document.getElementById("panel").classList.toggle("collapsed"));
+  const panel = document.getElementById("panel");
+  if (matchMedia("(max-width: 760px)").matches) panel.classList.add("collapsed");
+  document.getElementById("sheetToggle").addEventListener("click", () => panel.classList.toggle("collapsed"));
 }
 
 main();
