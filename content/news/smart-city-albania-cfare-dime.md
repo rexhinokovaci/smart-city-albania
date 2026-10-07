@@ -3,6 +3,7 @@ title: "Smart City Albania: çfarë dimë deri tani për kamerat, kostot dhe kon
 description: "Përmbledhje me burime: financimi nga Fondi i Abu Dhabit, kamerat ANPR dhe PTZ, kompania Presight AI dhe pyetjet e hapura për transparencën."
 date: 2026-10-07
 lang: sq
+translation: lajme/smart-city-albania-what-we-know
 sources:
   - https://www.hashtag.al/en/index.php/2025/03/11/projekti-smart-city-ne-shqiperi-118-5-milione-euro-per-kamera-ne-rruge-e-radare/
   - https://rtsh.al/rti/en/smart-city-project-5000-intelligent-cameras-across-20-albanian-cities/

@@ -11,6 +11,27 @@ const OUT = "dist";
 const TYPE_LABELS = { alpr: "Lexues targash (ALPR)", cctv: "Kamera CCTV", dome: "Kamera kupolë (PTZ)", speed: "Kamera shpejtësie", other: "Tjetër" };
 const KIND_TITLES = { news: "Lajme për Smart City Albania", guides: "Të drejtat e tua dhe udhëzues" };
 const today = new Date().toISOString().slice(0, 10);
+const OG_IMAGE = `${SITE_URL}/assets/og.png`;
+const PUBLISHER = { "@type": "Organization", name: "Modex Apps", url: "https://modex.al", logo: { "@type": "ImageObject", url: `${SITE_URL}/assets/og.png` } };
+const SECTION_NAMES = { lajme: "Lajme", udhezues: "Të drejtat", qytete: "Qytetet", en: "English" };
+
+// BreadcrumbList for every page below the root: Home › Section › Page.
+function breadcrumbs(path, title) {
+  const parts = path.split("/").filter(Boolean);
+  if (!parts.length || path.endsWith(".html")) return null;
+  const crumbs = [{ name: "Smart City Albania", url: `${SITE_URL}/` }];
+  if (SECTION_NAMES[parts[0]] && parts.length > 1) crumbs.push({ name: SECTION_NAMES[parts[0]], url: `${SITE_URL}/${parts[0]}/` });
+  crumbs.push({ name: title, url: `${SITE_URL}/${path}` });
+  return { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.url })) };
+}
+
+// Visible FAQ + matching FAQPage schema (Google requires the answers to be on the page).
+function faq(items) {
+  return {
+    html: `<h2>Pyetje të shpeshta</h2>${items.map((q) => `<h3>${esc(q.q)}</h3><p>${esc(q.a)}</p>`).join("")}`,
+    jsonLd: { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: items.map((q) => ({ "@type": "Question", name: q.q, acceptedAnswer: { "@type": "Answer", text: q.a } })) },
+  };
+}
 
 async function write(path, content) {
   await mkdir(dirname(join(OUT, path)), { recursive: true });
@@ -18,9 +39,13 @@ async function write(path, content) {
 }
 
 // `depth` = how many directories below the site root this page lives, for relative asset links.
-function layout({ title, description, path, depth, body, jsonLd, lang = "sq" }) {
+function layout({ title, description, path, depth, body, jsonLd, lang = "sq", ogType = "website", published, alternates = [] }) {
   const up = "../".repeat(depth);
   const canonical = `${SITE_URL}/${path}`;
+  const ld = [jsonLd, breadcrumbs(path, title)].flat().filter(Boolean);
+  const hreflang = alternates.length
+    ? [{ lang, href: canonical }, ...alternates].map((a) => `<link rel="alternate" hreflang="${a.lang}" href="${a.href}">`).join("\n")
+    : "";
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -31,15 +56,23 @@ function layout({ title, description, path, depth, body, jsonLd, lang = "sq" }) 
 <title>${esc(title)} — Smart City Albania</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${canonical}">
-<meta property="og:type" content="article">
+${hreflang}
+<meta property="og:type" content="${ogType}">
+<meta property="og:site_name" content="Smart City Albania">
+<meta property="og:locale" content="${lang === "en" ? "en_GB" : "sq_AL"}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="${OG_IMAGE}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+${published ? `<meta property="article:published_time" content="${esc(published)}">` : ""}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${OG_IMAGE}">
 <link rel="alternate" type="application/rss+xml" title="Lajme — Smart City Albania" href="${SITE_URL}/feed.xml">
 <link rel="icon" href="${up}assets/icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="${up}assets/style.css">
-${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, "\\u003c")}</script>` : ""}
+${ld.map((x) => `<script type="application/ld+json">${JSON.stringify(x).replace(/</g, "\\u003c")}</script>`).join("\n")}
 </head>
 <body>
 <header class="topbar">
@@ -71,22 +104,24 @@ async function loadContent(kind) {
 function renderArticle(item) {
   const path = `${item.route}/${item.slug}/`;
   const sources = item.sources.length
-    ? `<section class="sources"><h2>Burimet</h2><ol>${item.sources.map((s) => `<li><a href="${esc(s)}" rel="noopener nofollow" target="_blank">${esc(s)}</a></li>`).join("")}</ol></section>`
+    ? `<section class="sources"><h2>${item.lang === "en" ? "Sources" : "Burimet"}</h2><ol>${item.sources.map((s) => `<li><a href="${esc(s)}" rel="noopener nofollow" target="_blank">${esc(s)}</a></li>`).join("")}</ol></section>`
     : "";
   const body = `<article>
 <h1>${esc(item.title)}</h1>
-<p class="meta"><time datetime="${esc(item.date)}">${esc(item.date)}</time>${item.updated ? ` · përditësuar ${esc(item.updated)}` : ""}</p>
+<p class="meta"><time datetime="${esc(item.date)}">${esc(item.date)}</time>${item.updated ? ` · ${item.lang === "en" ? "updated" : "përditësuar"} ${esc(item.updated)}` : ""}</p>
 ${item.html}
 ${sources}
-<a class="btn btn-primary cta" href="../../">Shiko hartën e kamerave →</a>
+<a class="btn btn-primary cta" href="../../${item.lang === "en" ? "en/" : ""}">${item.lang === "en" ? "See the camera map →" : "Shiko hartën e kamerave →"}</a>
 </article>`;
   const jsonLd = {
     "@context": "https://schema.org", "@type": item.kind === "news" ? "NewsArticle" : "Article",
     headline: item.title, description: item.description, datePublished: item.date, dateModified: item.updated ?? item.date,
-    inLanguage: item.lang, mainEntityOfPage: `${SITE_URL}/${path}`, publisher: { "@type": "Organization", name: "Modex Apps" },
+    inLanguage: item.lang, mainEntityOfPage: `${SITE_URL}/${path}`, image: OG_IMAGE, author: PUBLISHER, publisher: PUBLISHER,
     ...(item.sources.length ? { citation: item.sources } : {}),
   };
-  return { path, html: layout({ title: item.title, description: item.description, path, depth: 2, body, jsonLd, lang: item.lang }) };
+  // `translation: lajme/other-slug` in front matter links the two language versions (hreflang both ways).
+  const alternates = item.translation ? [{ lang: item.lang === "en" ? "sq" : "en", href: `${SITE_URL}/${item.translation.replace(/^\/|\/$/g, "")}/` }] : [];
+  return { path, html: layout({ title: item.title, description: item.description, path, depth: 2, body, jsonLd, lang: item.lang, ogType: "article", published: item.date, alternates }) };
 }
 
 function renderIndex(kind, items) {
@@ -96,12 +131,19 @@ function renderIndex(kind, items) {
   return { path: `${route}/`, html: layout({ title: KIND_TITLES[kind], description: `${KIND_TITLES[kind]} — burime të verifikuara, të përditësuara rregullisht.`, path: `${route}/`, depth: 1, body }) };
 }
 
-function renderCity(city, cams) {
+function renderCity(city, cams, cities) {
+  const nearby = cities.filter((c) => c.slug !== city.slug).sort((x, y) => distanceKm(city.lat, city.lon, x.lat, x.lon) - distanceKm(city.lat, city.lon, y.lat, y.lon)).slice(0, 4);
   const path = `qytete/${city.slug}/`;
   const counts = Object.fromEntries(Object.keys(TYPE_LABELS).map((k) => [k, cams.filter((c) => c.type === k).length]));
   const title = `Kamerat e mbikëqyrjes në ${city.name}`;
   const named = cams.filter((c) => c.origin === "official" && c.name);
   const description = `${cams.length} kamera të regjistruara në ${city.name}, përfshirë ${counts.alpr} lexues targash. Shiko hartën dhe njih të drejtat e tua.`;
+  const q = faq([
+    { q: `Sa kamera mbikëqyrjeje ka në ${city.name}?`, a: `Në hartën publike Smart City Albania janë regjistruar ${cams.length} kamera në ${city.name} (përditësuar ${today}), nga të cilat ${counts.alpr} lexues targash dhe ${counts.speed} kamera shpejtësie. Numri real ka shumë gjasa të jetë më i lartë, sepse vendndodhjet e kamerave të programit qeveritar Smart City nuk janë publikuar.` },
+    { q: `A është ${city.name} pjesë e programit Smart City?`, a: city.smartCity ? `Po. ${city.name} është një nga 20 qytetet ku sipas raportimeve po instalohen kamera inteligjente, përfshirë kamera që lexojnë targat (ANPR/ALPR).` : `${city.name} nuk është në listën e 20 qyteteve të raportuara për fazën e parë të programit Smart City. Kamerat e bashkisë, të policisë dhe ato private mund të ekzistojnë gjithsesi.` },
+    { q: "Si mund t'i kërkoj pamjet e kamerës ku shfaqem?", a: "Sipas Ligjit nr. 124/2024 për mbrojtjen e të dhënave personale, mund t'i dërgosh një kërkesë me shkrim operatorit të kamerës (Policia e Shtetit, bashkia ose subjekti privat) me datën, orën dhe vendin. Operatori duhet të përgjigjet brenda 30 ditëve. Nëse nuk të përgjigjen, mund të ankohesh te Komisioneri (IDP)." },
+    { q: "Si raportoj një kamerë që mungon në hartë?", a: "Përdor formularin 'Raporto një kamerë' në hartë. Shëno vendndodhjen, llojin dhe drejtimin e kamerës. Raportimet shfaqen si të paverifikuara derisa t'i konfirmojë një mirëmbajtës." },
+  ]);
   const rows = Object.entries(counts).filter(([, n]) => n).map(([k, n]) => `<tr><td>${TYPE_LABELS[k]}</td><td>${n}</td></tr>`).join("");
   const body = `<h1>${esc(title)}</h1>
 <p class="meta">Përditësuar ${today}</p>
@@ -111,8 +153,14 @@ ${city.smartCity ? `<p><strong>${esc(city.name)} është një nga 20 qytetet e p
 ${named.length ? `<h2>Kamerat zyrtare të publikuara</h2><ul>${named.map((c) => `<li>${esc(c.name)}${c.operator ? ` · ${esc(c.operator)}` : ""}</li>`).join("")}</ul>` : ""}
 <h2>Çfarë duhet të dish</h2>
 <p>Kamerat në hapësira publike përpunojnë të dhëna personale. Ke të drejtë të dish kush i operon, për çfarë qëllimi dhe sa kohë ruhen pamjet, si dhe të kërkosh pamjet ku shfaqesh ti. <a href="../../udhezues/si-te-kerkosh-pamjet-e-kameres/">Lexo si t'i kërkosh</a>.</p>
-<a class="btn btn-primary cta" href="../../#14/${city.lat}/${city.lon}">Hap hartën e ${esc(city.name)} →</a>`;
-  const jsonLd = { "@context": "https://schema.org", "@type": "WebPage", name: title, description, about: { "@type": "City", name: city.name, geo: { "@type": "GeoCoordinates", latitude: city.lat, longitude: city.lon } } };
+<a class="btn btn-primary cta" href="../../#14/${city.lat}/${city.lon}">Hap hartën e ${esc(city.name)} →</a>
+${q.html}
+<h2>Qytete afër</h2>
+<ul>${nearby.map((c) => `<li><a href="../${c.slug}/">Kamerat në ${esc(c.name)}</a></li>`).join("")}</ul>`;
+  const jsonLd = [
+    { "@context": "https://schema.org", "@type": "WebPage", name: title, description, dateModified: today, about: { "@type": "City", name: city.name, geo: { "@type": "GeoCoordinates", latitude: city.lat, longitude: city.lon } } },
+    q.jsonLd,
+  ];
   return { path, html: layout({ title, description, path, depth: 2, body, jsonLd }) };
 }
 
@@ -164,7 +212,31 @@ await write("data/all.geojson", JSON.stringify({
 const citiesWithCameras = [...byCity.values()].filter((l) => l.length).length;
 await write("data/meta.json", JSON.stringify({ updated: today, total: cameras.length, official: cameras.filter((c) => c.origin === "official").length, citiesWithCameras, smartCityCities: cities.filter((c) => c.smartCity).length, osmGenerated: osm.generated, officialGenerated: official.generated }) + "\n");
 
-const indexHtml = (await readFile("src/index.html", "utf8")).replaceAll("{{SITE_URL}}", SITE_URL);
+const guideItems = await loadContent("guides");
+const homeLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: `${SITE_URL}/`, name: "Smart City Albania", alternateName: "Harta e Kamerave të Shqipërisë", inLanguage: ["sq", "en"], publisher: PUBLISHER },
+    {
+      "@type": "Dataset", name: "Smart City Albania — Harta e Kamerave",
+      description: "Vendndodhjet publike të kamerave të mbikëqyrjes, kamerave të shpejtësisë dhe lexuesve të targave (ALPR/ANPR) në Shqipëri, nga burime zyrtare, raportime të verifikuara dhe OpenStreetMap.",
+      url: `${SITE_URL}/`, keywords: ["kamera", "Smart City", "ALPR", "ANPR", "mbikëqyrje", "Shqipëri", "surveillance cameras Albania"],
+      license: "https://opendatacommons.org/licenses/odbl/1-0/", isAccessibleForFree: true, dateModified: today,
+      spatialCoverage: { "@type": "Place", name: "Shqipëri", geo: { "@type": "GeoShape", box: "39.6 19.2 42.7 21.1" } },
+      creator: PUBLISHER,
+      distribution: [{ "@type": "DataDownload", encodingFormat: "application/geo+json", contentUrl: `${SITE_URL}/data/all.geojson` }],
+    },
+  ],
+};
+const seoLinks = [
+  ...cities.map((c) => `<a href="qytete/${c.slug}/">Kamerat në ${esc(c.name)}</a>`),
+  ...guideItems.map((g) => `<a href="udhezues/${g.slug}/">${esc(g.title.split(":")[0])}</a>`),
+  '<a href="en/" hreflang="en">English</a>',
+].join("");
+const indexHtml = (await readFile("src/index.html", "utf8"))
+  .replace("{{JSON_LD}}", JSON.stringify(homeLd).replace(/</g, "\\u003c"))
+  .replace("{{SEO_LINKS}}", seoLinks)
+  .replaceAll("{{SITE_URL}}", SITE_URL);
 await write("index.html", indexHtml);
 
 const pages = [{ path: "", priority: "1.0" }];
@@ -189,10 +261,40 @@ await write("qytete/index.html", layout({
 }));
 pages.push({ path: "qytete/", priority: "0.8" });
 for (const city of cities) {
-  const page = renderCity(city, byCity.get(city.slug));
+  const page = renderCity(city, byCity.get(city.slug), cities);
   await write(`${page.path}index.html`, page.html);
   pages.push({ path: page.path, lastmod: today, priority: "0.7" });
 }
+
+// English landing page: captures "surveillance cameras Albania" / "Smart City Albania" searches from abroad.
+const enItems = allItems.filter((i) => i.lang === "en");
+const enFaq = [
+  { q: "How many surveillance cameras are there in Albania?", a: `This open map currently lists ${cameras.length} cameras from official sources, verified reports and OpenStreetMap. Government statements describe about 5,000 intelligent cameras being installed in 20 cities under the Smart City programme, but their locations have not been published, so the real number is higher.` },
+  { q: "What is Smart City Albania?", a: "Smart City is the Albanian government's programme for intelligent traffic and public-safety cameras, run by the State Police. Reported components include automatic number plate recognition (ANPR/ALPR) cameras, PTZ traffic cameras, body cameras for police officers and smart radars." },
+  { q: "Which cities are covered by the Smart City programme?", a: `Reports list 20 cities, including ${cities.filter((c) => c.smartCity).slice(0, 8).map((c) => c.name).join(", ")} and others.` },
+  { q: "Can I request CCTV footage of myself in Albania?", a: "Yes. Albania's Law No. 124/2024 on personal data protection, aligned with the EU GDPR, gives you a right of access. Send a written request to the camera operator with the date, time and place; they should reply within 30 days. If they don't, you can complain to the Information and Data Protection Commissioner (IDP)." },
+  { q: "Is this project affiliated with the government?", a: "No. It is an independent, open-source transparency project started by Modex Apps and built by contributors. It maps cameras visible from public space only and never publishes footage, faces or plates." },
+];
+const enQ = { html: `<h2>Frequently asked questions</h2>${enFaq.map((q) => `<h3>${esc(q.q)}</h3><p>${esc(q.a)}</p>`).join("")}`, jsonLd: { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: enFaq.map((q) => ({ "@type": "Question", name: q.q, acceptedAnswer: { "@type": "Answer", text: q.a } })) } };
+await write("en/index.html", layout({
+  title: "Surveillance Camera Map of Albania (Smart City, ALPR, CCTV)",
+  description: `Open map of ${cameras.length} surveillance, speed and licence-plate (ALPR) cameras in Albania, updated daily. Smart City facts, sources and your privacy rights.`,
+  path: "en/", depth: 1, lang: "en",
+  alternates: [{ lang: "sq", href: `${SITE_URL}/` }, { lang: "x-default", href: `${SITE_URL}/` }],
+  jsonLd: enQ.jsonLd,
+  body: `<h1>Surveillance camera map of Albania</h1>
+<p class="meta">Updated ${today}</p>
+<p><strong>Smart City Albania</strong> is the first public, open-data map of surveillance cameras in Albania. It currently lists <strong>${cameras.length}</strong> cameras, including traffic cameras, speed cameras and licence-plate readers (ALPR/ANPR), drawn from official public sources, verified community reports and OpenStreetMap.</p>
+<p>The Albanian government is rolling out about 5,000 intelligent cameras in 20 cities under its Smart City programme. Their locations have not been published. This project helps close that gap, the way many EU cities already publish their public camera locations.</p>
+<a class="btn btn-primary cta" href="../">Open the camera map →</a>
+${enItems.length ? `<h2>Read in English</h2><ul class="cards">${enItems.map((i) => `<li><a href="../${i.route}/${i.slug}/"><strong>${esc(i.title)}</strong><small>${esc(i.date)} · ${esc(i.description)}</small></a></li>`).join("")}</ul>` : ""}
+<h2>Cameras by city</h2>
+<ul class="cards">${cityCards.map(({ c, n }) => `<li><a href="../qytete/${c.slug}/" hreflang="sq"><strong>${esc(c.name)}</strong><small>${n} cameras mapped${c.smartCity ? " · Smart City city" : ""}</small></a></li>`).join("")}</ul>
+${enQ.html}
+<h2>Open data</h2>
+<p>All data is free to reuse under the ODbL: <a href="../data/all.geojson">download GeoJSON</a>. Code is AGPL-3.0 and content CC BY-SA 4.0. <a href="https://github.com/rexhinokovaci/smart-city-albania">Contribute on GitHub</a> or report a camera that is missing from the map.</p>`,
+}));
+pages.push({ path: "en/", priority: "0.9" });
 
 await write("404.html", layout({ title: "Faqja nuk u gjet", description: "Faqja nuk ekziston.", path: "404.html", depth: 0, body: `<h1>404 — Faqja nuk u gjet</h1><p><a href="${SITE_URL}/">Kthehu te harta</a></p>` }).replaceAll('href="assets/', `href="${SITE_URL}/assets/`).replaceAll('src="assets/', `src="${SITE_URL}/assets/`));
 await write("feed.xml", rss(allItems.filter((i) => i.kind === "news")));
@@ -201,13 +303,14 @@ await write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 ${pages.map((p) => `<url><loc>${SITE_URL}/${p.path}</loc><lastmod>${p.lastmod ?? today}</lastmod><priority>${p.priority}</priority></url>`).join("\n")}
 </urlset>
 `);
-await write("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+await write("robots.txt", `User-agent: *\nAllow: /\n\n# AI search and answer engines are welcome: citations send readers to the sources.\n${["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "PerplexityBot", "Google-Extended", "Applebot-Extended", "CCBot"].map((b) => `User-agent: ${b}\nAllow: /\n`).join("\n")}\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 await write("llms.txt", `# Smart City Albania
 
 > Public transparency map of surveillance cameras and licence-plate readers (ALPR) in Albania, with guides on residents' privacy rights. Maintained by Modex Apps.
 
 - Cameras mapped: ${cameras.length} (updated ${today})
-- Data: ${SITE_URL}/data/cameras.geojson (curated), ${SITE_URL}/data/osm.geojson (© OpenStreetMap contributors, ODbL)
+- English overview: ${SITE_URL}/en/
+- Data: ${SITE_URL}/data/all.geojson (merged), ${SITE_URL}/data/cameras.geojson (curated), ${SITE_URL}/data/osm.geojson (© OpenStreetMap contributors, ODbL)
 
 ## Guides
 ${allItems.filter((i) => i.kind === "guides").map((i) => `- [${i.title}](${SITE_URL}/${i.route}/${i.slug}/): ${i.description}`).join("\n")}

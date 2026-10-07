@@ -15,8 +15,13 @@ area["ISO3166-1"="AL"][admin_level=2]->.al;
   node["man_made"="surveillance"](area.al);
   node["highway"="speed_camera"](area.al);
   node["enforcement"](area.al);
-);
-out body;`;
+  way["man_made"="surveillance"](area.al);
+  relation["type"="enforcement"](area.al);
+)->.found;
+// Enforcement relations (speed/red-light) point at their camera via an often untagged "device" member.
+node(r.found:"device")->.devices;
+(.found; .devices;);
+out body center;`;
 
 function classify(t) {
   if (t.highway === "speed_camera" || t.enforcement === "maxspeed") return "speed";
@@ -52,15 +57,23 @@ async function fetchOverpass() {
 }
 
 const data = await fetchOverpass();
+const deviceEnforcement = new Map();
+for (const rel of data.elements.filter((el) => el.type === "relation")) {
+  for (const m of rel.members ?? []) if (m.type === "node" && m.role === "device") deviceEnforcement.set(m.ref, rel.tags?.enforcement ?? "other");
+}
 const features = data.elements
-  .filter((el) => el.type === "node" && inAlbania(el.lat, el.lon))
+  .filter((el) => el.type === "node" || el.type === "way")
+  .map((el) => ({ ...el, lat: el.lat ?? el.center?.lat, lon: el.lon ?? el.center?.lon }))
+  .filter((el) => inAlbania(el.lat, el.lon))
   .map((el) => {
-    const t = el.tags ?? {};
+    const t = { ...el.tags };
+    if (!t.enforcement && deviceEnforcement.has(el.id)) t.enforcement = deviceEnforcement.get(el.id);
     return {
       type: "Feature",
       geometry: { type: "Point", coordinates: [el.lon, el.lat] },
       properties: {
-        id: `osm-${el.id}`,
+        // Node ids keep their historical "osm-<id>" form so existing ids stay stable.
+        id: el.type === "node" ? `osm-${el.id}` : `osm-${el.type}-${el.id}`,
         type: classify(t),
         direction: parseDirection(t["camera:direction"] ?? t.direction),
         operator: t.operator,
@@ -70,7 +83,7 @@ const features = data.elements
         manufacturer: t.manufacturer,
         height: Number.parseFloat(t.height) || undefined,
         fov: Number.parseInt(t["camera:angle_of_view"] ?? t["camera:fov"], 10) || undefined,
-        source: `https://www.openstreetmap.org/node/${el.id}`,
+        source: `https://www.openstreetmap.org/${el.type}/${el.id}`,
         verified: true,
       },
     };

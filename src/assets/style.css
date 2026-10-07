@@ -36,6 +36,9 @@ body.app { height: 100dvh; display: flex; flex-direction: column; overflow: hidd
 .filters label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
 .dot.alpr { background: #e41e20; } .dot.cctv { background: #2563eb; } .dot.dome { background: #9333ea; } .dot.speed { background: #d97706; } .dot.other { background: #64748b; }
+.panel-title { margin: 0; font-size: 17px; line-height: 1.3; }
+.seo-links { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+.seo-links a { color: var(--muted); }
 .fineprint { margin: 0; font-size: 12px; color: var(--muted); }
 .cam-icon { background: none; border: 0; }
 .basemap-dark { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.6); }
@@ -66,7 +69,8 @@ body.app { height: 100dvh; display: flex; flex-direction: column; overflow: hidd
   .brand span { font-size: 15px; }
   .layout { grid-template-columns: minmax(0, 1fr); position: relative; }
   .panel { position: absolute; left: 0; right: 0; bottom: 0; z-index: 900; max-height: 62dvh; border-right: 0; border-top: 1px solid var(--border); border-radius: 16px 16px 0 0; padding-top: 6px; transition: transform .25s ease; }
-  .panel.collapsed { transform: translateY(calc(100% - 104px)); }
+  .panel.collapsed { transform: translateY(calc(100% - 128px)); }
+  .panel-title { font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sheet-handle { display: block; align-self: center; width: 44px; height: 18px; border: 0; background: none; cursor: pointer; }
   .sheet-handle::before { content: ""; display: block; width: 44px; height: 5px; border-radius: 3px; background: var(--border); }
 }

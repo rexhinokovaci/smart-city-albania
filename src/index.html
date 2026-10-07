@@ -13,16 +13,23 @@
   <meta property="og:title" content="Harta e Kamerave — Smart City Albania">
   <meta property="og:description" content="Ku janë kamerat e mbikëqyrjes në Shqipëri? Hartë publike, e hapur për këdo.">
   <meta property="og:url" content="{{SITE_URL}}/">
+  <meta property="og:site_name" content="Smart City Albania">
+  <meta property="og:locale" content="sq_AL">
+  <meta property="og:image" content="{{SITE_URL}}/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{SITE_URL}}/assets/og.png">
+  <link rel="alternate" hreflang="sq" href="{{SITE_URL}}/">
+  <link rel="alternate" hreflang="en" href="{{SITE_URL}}/en/">
+  <link rel="alternate" hreflang="x-default" href="{{SITE_URL}}/">
   <link rel="alternate" type="application/rss+xml" title="Lajme — Smart City Albania" href="{{SITE_URL}}/feed.xml">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="">
   <link rel="stylesheet" href="assets/style.css">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Dataset","name":"Smart City Albania — Harta e Kamerave","description":"Vendndodhjet publike të kamerave të mbikëqyrjes dhe lexuesve të targave në Shqipëri.","url":"{{SITE_URL}}/","spatialCoverage":{"@type":"Place","name":"Shqipëri"},"creator":{"@type":"Organization","name":"Modex Apps"}}
-  </script>
+  <script type="application/ld+json">{{JSON_LD}}</script>
 </head>
 <body class="app">
   <header class="topbar">
@@ -41,6 +48,7 @@
   <main class="layout">
     <aside class="panel" id="panel" aria-label="Filtrat">
       <button class="sheet-handle" id="sheetToggle" type="button" aria-label="Hap/mbyll panelin"></button>
+      <h1 class="panel-title" data-i18n="title">Harta e kamerave të mbikëqyrjes në Shqipëri</h1>
       <section class="stats" aria-live="polite">
         <div><strong id="statTotal">–</strong><span data-i18n="stats.total">kamera në hartë</span></div>
         <div><strong id="statOfficial">–</strong><span data-i18n="stats.official">nga burime zyrtare</span></div>
@@ -77,6 +85,7 @@
       <a class="btn" id="report" href="https://github.com/rexhinokovaci/smart-city-albania/issues/new?template=new-camera.yml" target="_blank" rel="noopener" data-i18n="report">＋ Raporto një kamerë</a>
       <p class="fineprint" data-i18n="privacy">Kjo faqe nuk përdor cookies dhe nuk gjurmon vizitorët. Vendndodhja jote përpunohet vetëm në pajisjen tënde.</p>
       <p class="fineprint"><span data-i18n="updated">Përditësuar:</span> <time id="updated">–</time></p>
+      <nav class="seo-links" aria-label="Qytetet dhe udhëzuesit">{{SEO_LINKS}}</nav>
     </aside>
     <div id="map" role="application" aria-label="Harta e kamerave"></div>
   </main>
