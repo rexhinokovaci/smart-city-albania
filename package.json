@@ -10,6 +10,7 @@
     "validate": "node scripts/validate.mjs",
     "sync:osm": "node scripts/sync-osm.mjs",
     "sync:official": "node scripts/sync-official.mjs",
+    "import:reports": "node scripts/import-reports.mjs",
     "build": "node scripts/validate.mjs && node scripts/build.mjs",
     "serve": "npm run build && npx --yes serve@14.2.3 dist"
   },
