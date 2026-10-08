@@ -1,4 +1,269 @@
 {
-  "type": "FeatureCollection",
-  "features": []
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.826339,
+     41.340148
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-ferit-xhajko-5-maji",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Rr. Ferit Xhajko – Rr. 5 Maji",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.841114,
+     41.337897
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-xhanfize-keko-sadik-petrela",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Rr. Xhanfize Keko – Rr. Sadik Petrela",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.819813,
+     41.323587
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-bajram-curri-deshmoret-e-kombit",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Blv. Bajram Curri – Blv. Dëshmorët e Kombit",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.817561,
+     41.32323
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-bajram-curri-ibrahim-rugova",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Blv. Bajram Curri – Rr. Ibrahim Rugova",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.813385,
+     41.322569
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-bajram-curri-sami-frasheri",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Blv. Bajram Curri – Rr. Sami Frashëri",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.808057,
+     41.318985
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-sulejman-delvina-medar-shtylla",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Rr. Sulejman Delvina – Rr. Medar Shtylla",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.799258,
+     41.320539
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-bajram-curri-muhedin-llagani",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Blv. Bajram Curri – Rr. Muhedin Llagani",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.783848,
+     41.336458
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-teodor-keko-abedin-rexha",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Rr. Teodor Keko – Rr. Abedin Rexha",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.820008,
+     41.337146
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-ferit-xhajko-siri-kodra",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Rr. Ferit Xhajko – Rr. Siri Kodra",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.822871,
+     41.333196
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-e-dibres-siri-kodra",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Rr. e Dibrës – Rr. Siri Kodra",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.816981,
+     41.333134
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-zogu-i-fortuzi",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Blv. Zogu I – Rr. Fortuzi",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.812071,
+     41.330356
+    ]
+   },
+   "properties": {
+    "id": "tirana-utcc-e-durresit-fortuzi",
+    "type": "cctv",
+    "zone": "street",
+    "name": "Rr. e Durrësit – Rr. Fortuzi",
+    "operator": "Bashkia Tiranë",
+    "purpose": "traffic",
+    "note": "Kryqëzim i listuar në projektin zyrtar M01 \"Additional CCTV in Tirana\" (Go Tirana 2016–2026). Vendndodhja është gjeokoduar nga emrat e rrugëve; instalimi nuk është konfirmuar në terren.",
+    "source": "https://tirana.al/uploads/2019/1/20190110154442_m01-additional-cctv-in-tirana-2.pdf",
+    "verified": false,
+    "added": "2026-10-08"
+   }
+  }
+ ]
 }
