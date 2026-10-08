@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "generated": "2026-10-07T20:13:05.318Z",
+ "generated": "2026-10-08T06:10:22.068Z",
  "attribution": "© OpenStreetMap contributors, ODbL",
  "features": [
   {
@@ -17,6 +17,7 @@
     "type": "cctv",
     "direction": 326,
     "zone": "area",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12172821032",
     "verified": true
    }
@@ -35,6 +36,7 @@
     "type": "cctv",
     "direction": 55,
     "zone": "area",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12172970815",
     "verified": true
    }
@@ -53,6 +55,7 @@
     "type": "cctv",
     "direction": 312,
     "zone": "traffic",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12174648528",
     "verified": true
    }
@@ -71,6 +74,7 @@
     "type": "cctv",
     "direction": 96,
     "zone": "traffic",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12174648529",
     "verified": true
    }
@@ -89,6 +93,7 @@
     "type": "cctv",
     "direction": 95,
     "zone": "traffic",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12174648530",
     "verified": true
    }
@@ -107,6 +112,7 @@
     "type": "dome",
     "direction": 25,
     "zone": "corridor",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12175395229",
     "verified": true
    }
@@ -125,6 +131,7 @@
     "type": "cctv",
     "direction": 188,
     "zone": "area",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12175404922",
     "verified": true
    }
@@ -143,6 +150,7 @@
     "type": "cctv",
     "direction": 45,
     "zone": "area",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12175404923",
     "verified": true
    }
@@ -161,6 +169,7 @@
     "type": "cctv",
     "direction": 252,
     "zone": "area",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12176430916",
     "verified": true
    }
@@ -179,6 +188,7 @@
     "type": "cctv",
     "direction": 268,
     "zone": "area",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12177031649",
     "verified": true
    }
@@ -197,6 +207,7 @@
     "type": "cctv",
     "direction": 157,
     "zone": "area",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12177031650",
     "verified": true
    }
@@ -215,6 +226,7 @@
     "type": "cctv",
     "direction": 135,
     "zone": "area",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12183592725",
     "verified": true
    }
@@ -233,6 +245,7 @@
     "type": "cctv",
     "direction": 280,
     "zone": "area",
+    "mount": "wall",
     "source": "https://www.openstreetmap.org/node/12183592726",
     "verified": true
    }
@@ -859,6 +872,8 @@
     "type": "cctv",
     "direction": 270,
     "zone": "traffic",
+    "mount": "pole",
+    "height": 1.2,
     "source": "https://www.openstreetmap.org/node/5127576771",
     "verified": true
    }
@@ -877,6 +892,8 @@
     "type": "cctv",
     "direction": 270,
     "zone": "traffic",
+    "mount": "pole",
+    "height": 1.2,
     "source": "https://www.openstreetmap.org/node/5127576772",
     "verified": true
    }
@@ -895,6 +912,8 @@
     "type": "cctv",
     "direction": 315,
     "zone": "traffic",
+    "mount": "pole",
+    "height": 1,
     "source": "https://www.openstreetmap.org/node/5127576773",
     "verified": true
    }
@@ -913,6 +932,8 @@
     "type": "cctv",
     "direction": 100,
     "zone": "traffic",
+    "mount": "pole",
+    "height": 1.2,
     "source": "https://www.openstreetmap.org/node/5127576775",
     "verified": true
    }
@@ -931,6 +952,8 @@
     "type": "cctv",
     "direction": 100,
     "zone": "traffic",
+    "mount": "pole",
+    "height": 1.2,
     "source": "https://www.openstreetmap.org/node/5127576776",
     "verified": true
    }
@@ -949,6 +972,8 @@
     "type": "cctv",
     "direction": 100,
     "zone": "traffic",
+    "mount": "pole",
+    "height": 1.2,
     "source": "https://www.openstreetmap.org/node/5127576777",
     "verified": true
    }
@@ -999,6 +1024,7 @@
     "type": "cctv",
     "operator": "Bashkia Shkodër",
     "zone": "town",
+    "mount": "pole",
     "source": "https://www.openstreetmap.org/node/7090858569",
     "verified": true
    }
@@ -1017,6 +1043,7 @@
     "type": "cctv",
     "operator": "Bashkia Shkodër",
     "zone": "town",
+    "mount": "pole",
     "source": "https://www.openstreetmap.org/node/8528477764",
     "verified": true
    }
@@ -1035,6 +1062,7 @@
     "type": "cctv",
     "operator": "Bashkia Shkodër",
     "zone": "town",
+    "mount": "pole",
     "source": "https://www.openstreetmap.org/node/8528477765",
     "verified": true
    }
