@@ -15,6 +15,6 @@
     "serve": "npm run build && npx --yes serve@14.2.3 dist"
   },
   "dependencies": {
-    "marked": "18.0.14"
+    "marked": "18.1.0"
   }
 }
