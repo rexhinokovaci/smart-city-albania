@@ -1,8 +1,40 @@
 {
  "type": "FeatureCollection",
- "generated": "2026-10-27T09:49:49.678Z",
+ "generated": "2026-10-29T10:54:40.057Z",
  "attribution": "© OpenStreetMap contributors, ODbL",
  "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8550928,
+     41.2791361
+    ]
+   },
+   "properties": {
+    "id": "osm-10796615572",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/10796615572",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8531058,
+     41.2840338
+    ]
+   },
+   "properties": {
+    "id": "osm-10796615587",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/10796615587",
+    "verified": true
+   }
+  },
   {
    "type": "Feature",
    "geometry": {
@@ -1528,6 +1560,150 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     19.9888397,
+     41.1939198
+    ]
+   },
+   "properties": {
+    "id": "osm-14329388292",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14329388292",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.0055591,
+     41.1542789
+    ]
+   },
+   "properties": {
+    "id": "osm-14329388310",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14329388310",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.0054496,
+     41.1542128
+    ]
+   },
+   "properties": {
+    "id": "osm-14329388311",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14329388311",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.9576637,
+     41.2101142
+    ]
+   },
+   "properties": {
+    "id": "osm-14329388323",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14329388323",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.9937977,
+     41.1806702
+    ]
+   },
+   "properties": {
+    "id": "osm-14329388456",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14329388456",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.8549053,
+     41.2790919
+    ]
+   },
+   "properties": {
+    "id": "osm-14329388469",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14329388469",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.9169437,
+     41.2373587
+    ]
+   },
+   "properties": {
+    "id": "osm-14329388470",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14329388470",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.917068,
+     41.2374017
+    ]
+   },
+   "properties": {
+    "id": "osm-14329388471",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14329388471",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.9158792,
+     41.2372361
+    ]
+   },
+   "properties": {
+    "id": "osm-14329388472",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14329388472",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      19.6749002,
      41.5720785
     ]
@@ -1544,14 +1720,14 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     20.0266926,
-     41.1133548
+     19.9148327,
+     41.2403017
     ]
    },
    "properties": {
-    "id": "osm-2403700705",
+    "id": "osm-2435823019",
     "type": "speed",
-    "source": "https://www.openstreetmap.org/node/2403700705",
+    "source": "https://www.openstreetmap.org/node/2435823019",
     "verified": true
    }
   },
@@ -1560,14 +1736,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     20.0268252,
-     41.1133889
+     19.9575354,
+     41.2099895
     ]
    },
    "properties": {
-    "id": "osm-3428211196",
+    "id": "osm-2728774387",
     "type": "speed",
-    "source": "https://www.openstreetmap.org/node/3428211196",
+    "source": "https://www.openstreetmap.org/node/2728774387",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.027031,
+     41.1128407
+    ]
+   },
+   "properties": {
+    "id": "osm-3428211177",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/3428211177",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     20.0268891,
+     41.1128117
+    ]
+   },
+   "properties": {
+    "id": "osm-3428211198",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/3428211198",
     "verified": true
    }
   },
@@ -1704,6 +1912,22 @@
     "mount": "pole",
     "height": 1.2,
     "source": "https://www.openstreetmap.org/node/5127576777",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.9890605,
+     41.1940795
+    ]
+   },
+   "properties": {
+    "id": "osm-5312134605",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/5312134605",
     "verified": true
    }
   },
