@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "generated": "2026-10-29T10:54:40.057Z",
+ "generated": "2026-10-30T10:53:06.463Z",
  "attribution": "© OpenStreetMap contributors, ODbL",
  "features": [
   {
@@ -8,8 +8,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19.8550928,
-     41.2791361
+     19.8550929,
+     41.2791357
     ]
    },
    "properties": {
@@ -1420,8 +1420,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19.820529,
-     41.3212395
+     19.8205462,
+     41.3212971
     ]
    },
    "properties": {
@@ -1608,8 +1608,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19.9576637,
-     41.2101142
+     19.9576756,
+     41.2101091
     ]
    },
    "properties": {
@@ -1704,6 +1704,22 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     19.8552319,
+     41.2791682
+    ]
+   },
+   "properties": {
+    "id": "osm-14331662302",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/14331662302",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      19.6749002,
      41.5720785
     ]
@@ -1720,24 +1736,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19.9148327,
-     41.2403017
-    ]
-   },
-   "properties": {
-    "id": "osm-2435823019",
-    "type": "speed",
-    "source": "https://www.openstreetmap.org/node/2435823019",
-    "verified": true
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     19.9575354,
-     41.2099895
+     19.9575244,
+     41.2099967
     ]
    },
    "properties": {
@@ -1776,6 +1776,38 @@
     "id": "osm-3428211198",
     "type": "speed",
     "source": "https://www.openstreetmap.org/node/3428211198",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.9993282,
+     41.1708914
+    ]
+   },
+   "properties": {
+    "id": "osm-4280731876",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/4280731876",
+    "verified": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     19.9984785,
+     41.1696257
+    ]
+   },
+   "properties": {
+    "id": "osm-4924348569",
+    "type": "speed",
+    "source": "https://www.openstreetmap.org/node/4924348569",
     "verified": true
    }
   },
