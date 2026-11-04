@@ -1,6 +1,6 @@
 {
  "type": "FeatureCollection",
- "generated": "2026-11-01T11:17:07.882Z",
+ "generated": "2026-11-04T12:09:54.380Z",
  "attribution": "© OpenStreetMap contributors, ODbL",
  "features": [
   {
@@ -24,8 +24,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     19.8531058,
-     41.2840338
+     19.8530974,
+     41.2840317
     ]
    },
    "properties": {
